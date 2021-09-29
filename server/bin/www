@@ -7,19 +7,20 @@ const mongoose = require("mongoose");
 var app = require("../app");
 var debug = require("debug")("server:server");
 var http = require("http");
-const dotenv = require("dotenv");
 const NewTodoListSchema = require('../models/todoLists')
 
 
-dotenv.config({ path: './config.env' });
+require('dotenv').config({path: __dirname + '/../.env'});
+
+
 //koppla upp mot databasen
 
-/*const DB = process.env.DATABASE.replace(
+const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
-);*/
+);
 
-mongoose.connect('mongodb+srv://sebastian:VPCEuCzPbyMEi5ih@cluster0.trasd.mongodb.net/BE3-todo?retryWrites=true&w=majority').then(() => {
+mongoose.connect(DB).then(() => {
   console.log("DB connection successful");
 });
 
