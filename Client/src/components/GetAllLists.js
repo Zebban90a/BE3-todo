@@ -2,15 +2,30 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 
 export default function GetAllLists() {
-  const url = "https://locaalhost:4000/"
-  const [allLists, setAllLists] = useState([])
+  const url = "https://localhost:4000/"
+  const [allLists, setAllLists] = useState(null)
 
   useEffect(() => {
-    let lists = axios.get(url)
-    setAllLists(lists)
+    // getLists()
+    // async function getLists() {
+    //   let response = await fetch("https://localhost:4000")
+    //   response = await response.json()
+    //   setAllLists(response)
+    // }
+
+    getData()
+
+
+    async function getData() {
+      const response = await fetch("http://localhost:4000/")
+      const data = await response.json()
+
+
+      setAllLists(data)
+    }
   }, [])
 
-  console.log(lists)
+  console.log(allLists)
 
-  return <div></div>
+  return <div>{JSON.stringify(allLists)}</div>
 }
