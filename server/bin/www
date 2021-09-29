@@ -3,10 +3,27 @@
 /**
  * Module dependencies.
  */
-
+const mongoose = require('mongoose');
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
+
+console.log(process.env)
+
+//koppla upp mot databasen
+const dotenv = require('dotenv');
+dotenv.config({ path: '../../config.env' });
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
+
+mongoose.connect(DB).then(() => {
+  console.log('DB connection successful');
+});
+
+
 
 /**
  * Get port from environment and store in Express.
