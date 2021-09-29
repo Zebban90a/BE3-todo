@@ -6,11 +6,4 @@ const NewTodoListSchema = new Schema({
   todos: {type: Array}
 });
 
-/*const NewToDo = new Schema({
-  titel: { type: String },
-
-  
-}); */
-
-
 module.exports = mongoose.model("todoLists", NewTodoListSchema);

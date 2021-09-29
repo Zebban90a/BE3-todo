@@ -10,8 +10,15 @@ router
   .post()
 
   router
-  .route('/todo/:id')
+  .route('/todolist/:id')
   .get(todoController.getOneList)
+  .post(todoController.addNewTodo)
+
+  router
+  .route('/todolist/todoitem/:id')
+  .get(todoController.getOneListItem)
   .post()
+
+
 
 module.exports = router;
