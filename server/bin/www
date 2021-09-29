@@ -25,7 +25,7 @@ mongoose.connect(DB).then(() => {
 });
 
 
-const Todolist = new NewTodoListSchema({
+/*const Todolist = new NewTodoListSchema({
   titel: 'halle33',
 })
 Todolist
@@ -35,7 +35,7 @@ Todolist
   })
   .catch((err) => {
     console.log('ERROR:', err);
-  });
+  }); */
 
 /**
  * Get port from environment and store in Express.
