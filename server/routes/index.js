@@ -9,4 +9,9 @@ router
   .get(todoController.getAllTodoLists)
   .post()
 
+  router
+  .route('/:id')
+  .get(todoController.getOneList)
+  .post()
+
 module.exports = router;
