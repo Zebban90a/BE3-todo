@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 
 export default function GetAllLists() {
   const url = "https://localhost:4000/"
