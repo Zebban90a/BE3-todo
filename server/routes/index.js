@@ -10,7 +10,7 @@ router
   .post()
 
   router
-  .route('/:id')
+  .route('/todo/:id')
   .get(todoController.getOneList)
   .post()
 

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 export default function GetAllLists() {
   const url = "https://localhost:4000/"
   const [allLists, setAllLists] = useState(null)
+  
 
   useEffect(() => {
     // getLists()
