@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
-import AllListPage from "../pages/AllListPage"
 
-export default function GetAllLists() {
+export default function AllListPage({ lists }) {
   const [allLists, setAllLists] = useState([])
 
   useEffect(() => {
@@ -13,14 +12,15 @@ export default function GetAllLists() {
     const data = await response.json()
 
     setAllLists(data)
-    //console.log(allLists)
+    console.log(allLists)
   }
 
   return (
-    <div>
-      <AllListPage Lists={allLists} />
-    </div>
+    <>
+      <div>
+        <button onClick={getData}>GET DATA</button>
+        {allLists.lenght > 0 ? <p>{allLists}</p> : <p>Loding lists...</p>}
+      </div>
+    </>
   )
 }
-
-// {JSON.stringify(allLists)}
