@@ -1,19 +1,20 @@
 import React, { useState } from "react"
+import axios from "axios"
 
 export default function PostForm() {
-  const [title, setTitle] = useState("")
-  const [text, setText] = useState("")
+  const [titel, setTitel] = useState("")
+  // const [text, setText] = useState("")
 
   let changeHandler = (e) => {
-    if (e.target.name == "title") {
-      setTitle(e.target.value)
+    if (e.target.name === "titel") {
+      setTitel({ titel: e.target.value })
     }
   }
 
   let submitHandler = (e) => {
     e.preventDefault()
-    console.log(`This is the title ${title}`)
-    console.log(`This is the text ${text}`)
+    console.log(`This is the titel ${titel.titel}`)
+    axios.post("http://localhost:4000/", titel)
   }
 
   return (
@@ -22,7 +23,7 @@ export default function PostForm() {
       <div>
         <form onSubmit={submitHandler} action="">
           <input
-            name="title"
+            name="titel"
             type="text"
             placeholder="titel"
             onChange={changeHandler}

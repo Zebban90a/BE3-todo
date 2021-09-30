@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const NewTodoListSchema = new Schema({
   titel: { type: String },
-  todos: {type: Array}
-});
+  todos: { type: Array, default: [] },
+})
 
-module.exports = mongoose.model("todoLists", NewTodoListSchema);
+module.exports = mongoose.model("todoLists", NewTodoListSchema)
