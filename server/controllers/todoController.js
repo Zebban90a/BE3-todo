@@ -51,6 +51,18 @@ exports.getAllTodoLists = async (req, res) => {
 
   }
 
+  exports.addNewTodoList = (req, res) => {
+    const name = req.body.titel; 
+    const listName = new todoListModel (name)
+    if(!listName) {
+    res.statusCode=404;
+      res.statusMessage='Not found'
+      res.end('Not found');
+    } else {
+    res.status(200).json(listName);
+    }
+  }
+
   /*exports.postItem = async (req, res) => {
     const todo = new NewTodoItemSchema ({
       titel: 'Kaffe3', 

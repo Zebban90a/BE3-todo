@@ -7,7 +7,7 @@ const todoController = require('../controllers/todoController');
 router
   .route('/')
   .get(todoController.getAllTodoLists)
-  .post()
+  .post(todoController.addNewTodoList)
 
   router
   .route('/todolist/:id')
