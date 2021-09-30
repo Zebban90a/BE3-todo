@@ -1,7 +1,7 @@
 const todoListModel = require('../models/todoLists')
 const todoModel = require('../models/todoItem')
 
-
+//////////////////////// GET REQUESTS ////////////////////////
 exports.getAllTodoLists = async (req, res) => {
 
     const schema = await todoListModel.find({});
@@ -36,6 +36,7 @@ exports.getAllTodoLists = async (req, res) => {
     }
   }
 
+  //////////////////////// POST REQUESTS ////////////////////////
   exports.addNewTodo = (req, res) => {
     const listId = req.params.id
     const todoObj = { titel: req.body.title, body: req.body.text }
