@@ -6,6 +6,7 @@ import {Link, useParams } from 'react-router-dom'
 export default function ListPage( ) {
 
   const [list, setList] = useState([])
+  const [todos, setTodos] = useState([])
   const { id } = useParams()
 
   async function FetchList() {
@@ -15,18 +16,21 @@ export default function ListPage( ) {
 
   useEffect(() => {
     FetchList()
+    setTodos(list.todos)
   }, [])
   
   
- 
   return (
     <> 
     <div>
         {list.length > 0 ? 'List not found' : list.titel  }
+    
     </div>
-    {list.todos.map((item) => (
-        <div>{item} </div>
-      ))}
+    <ul>
+    {todos.map((item) => (
+        <li>{item.titel} {item.createdAt} <button>DELETE</button><button>UPDATE</button></li>
+    ))}
+    </ul>
     </>
   )
 }
