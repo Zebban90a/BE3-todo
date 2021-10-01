@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react"
+import axios from 'axios'
 
-export default function AllListPage({ lists }) {
+export default function AllListPage( ) {
   const [allLists, setAllLists] = useState([])
 
-  useEffect(() => {
-    getData()
-  }, [])
-
-  async function getData() {
-    const response = await fetch("http://localhost:4000/")
-    const data = await response.json()
-
+  async function FetchAllLists() {
+    const { data } = await axios.get('http://localhost:4000/')
     setAllLists(data)
-    console.log(allLists)
   }
 
+  useEffect(() => {
+    FetchAllLists()
+  }, [])
+  
+
+ 
   return (
-    <>
-      <div>
-        <button onClick={getData}>GET DATA</button>
-        {allLists.lenght > 0 ? <p>{allLists}</p> : <p>Loding lists...</p>}
-      </div>
+    <> 
+    <div>
+    {allLists.map((item) => (
+        <div>{item.titel}</div>
+      ))}
+    </div>
     </>
   )
 }

@@ -18,7 +18,7 @@ export default function GetAllLists() {
 
   return (
     <div>
-      <AllListPage Lists={allLists} />
+      {allLists}
     </div>
   )
 }
