@@ -23,10 +23,10 @@ export default function ListPage( ) {
     <> 
     <div>
         {list.length > 0 ? 'List not found' : list.titel  }
-        {list.map((todoitem) => (
-            <div> {console.log(todoitem)}</div>
-        ))}
     </div>
+    {list.todos.map((item) => (
+        <div>{item} </div>
+      ))}
     </>
   )
 }
