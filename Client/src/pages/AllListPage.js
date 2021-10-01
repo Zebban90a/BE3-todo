@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios'
+import {Link } from 'react-router-dom'
+
 
 export default function AllListPage( ) {
   const [allLists, setAllLists] = useState([])
@@ -19,7 +21,7 @@ export default function AllListPage( ) {
     <> 
     <div>
     {allLists.map((item) => (
-        <div>{item.titel}</div>
+        <div><Link to= {`/todo/${item._id}`}>{item.titel} </Link></div>
       ))}
     </div>
     </>
