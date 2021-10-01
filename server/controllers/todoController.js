@@ -50,7 +50,6 @@ exports.addNewTodo = (req, res) => {
 }
 
 exports.addNewTodoList = (req, res) => {
-  console.log(req.body)
   const name = req.body
   const listName = new todoListModel(name)
   if (!listName) {
