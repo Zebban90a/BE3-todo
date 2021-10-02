@@ -7,6 +7,8 @@ export default function PostForm() {
   let changeHandler = (e) => {
     if (e.target.name == "title") {
       setTitle(e.target.value)
+    } else if (e.target.name == "text") {
+      setText(e.target.value)
     }
   }
 
@@ -28,14 +30,15 @@ export default function PostForm() {
             onChange={changeHandler}
           />
           <br />
-          {/* <textarea
+          
+          <textarea
             name="text"
             id=""
             cols="30"
             rows="10"
             placeholder="Skriv din todo"
             onChange={changeHandler}
-          ></textarea> */}
+          ></textarea>
           <br />
           <button type="submit">Spara</button>
         </form>
