@@ -16,12 +16,18 @@ export default function ListPage() {
   useEffect(() => {
     FetchList()
     setTodos(list.todos)
+    console.log(list.todos)
   }, [])
+
+  // for (let i = 0; i < list.todos.length; i++) {
+  //   ;<p>{list.todos[i].titel}</p>
+  // }
 
   return (
     <>
-      {/* <div>{list.length > 0 ? "List not found" : list.titel}</div>
-      <ul>
+      <div>{!list ? "List not found" : list.titel}</div>
+      <p>{!list.todos ? "todos not found" : "hittad"}</p>
+      {/* <ul>
         {todos.length > 0
           ? "Todos not found"
           : todos.map((item) => (
@@ -35,3 +41,5 @@ export default function ListPage() {
     </>
   )
 }
+
+//TODO när fetchningen fungerar igen så fixa post req i CreateTodo.js

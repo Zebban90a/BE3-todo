@@ -1,15 +1,17 @@
 import React, { useState } from "react"
+import axios from "axios"
 
 export default function CreateList() {
-  const [title, setTitle] = useState("")
+  const [titel, setTitel] = useState("")
 
   let submitHandler = (e) => {
-    e.preventDefault()
-    console.log(`This is the title ${title}`)
+    //e.preventDefault()
+    console.log(`This is the titel ${titel.titel}`)
+    axios.post("http://localhost:4000/", titel)
   }
 
   let changeHandler = (e) => {
-    setTitle(e.target.value)
+    setTitel({ titel: e.target.value })
   }
 
   return (
@@ -18,9 +20,9 @@ export default function CreateList() {
       <div>
         <form onSubmit={submitHandler} action="">
           <input
-            name="title"
+            name="titel"
             type="text"
-            placeholder="titel"
+            placeholder="Titel"
             onChange={changeHandler}
           />
           <button type="submit">Spara</button>
@@ -30,4 +32,4 @@ export default function CreateList() {
   )
 }
 
-//TODO fetcha nyta listan till servern
+//TODO fetcha nya listan till servern
