@@ -21,7 +21,7 @@ export default function AllListPage( ) {
     <> 
     <div>
     {allLists.map((item) => (
-        <div><Link to= {`/todo/${item._id}`}>{item.titel} </Link></div>
+        <div><Link to= {`/todolist/${item._id}`}>{item.titel} </Link></div>
       ))}
     </div>
     </>

@@ -4,7 +4,6 @@ import {
   Switch,
   Route 
 } from "react-router-dom";
-import AllLists from "./components/GetAllLists"
 import PostForm from "./components/PostForm"
 import AllListPage from "./pages/AllListPage"
 import ListPage from "./pages/ListPage";
@@ -15,7 +14,7 @@ function App() {
     <>
     <Router>
     <Switch>
-      <Route path='/todo/:id'>
+      <Route path='/todolist/:id'>
         <ListPage />
        </Route> 
       <Route path='/' >

@@ -27,7 +27,9 @@ export default function ListPage( ) {
     
     </div>
     <ul>
-    {todos.map((item) => (
+      
+    {todos.length > 0 ? 'Todos not found' : 
+    todos.map((item) => (
         <li>{item.titel} {item.createdAt} <button>DELETE</button><button>UPDATE</button></li>
     ))}
     </ul>
