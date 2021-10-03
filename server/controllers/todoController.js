@@ -41,19 +41,24 @@ exports.getOneListItem = async (req, res) => {
 
 //////////////////////// POST REQUESTS ////////////////////////
 exports.addNewTodo = (req, res) => {
-  const listId = req.params.id
+  const listId = req.params.id;
   const todoObj = { body: req.body.text }
-  todoListModel.findOneAndUpdate(
-    { _id: listId },
-    { $push: { todos: new todoModel(todoObj) } },
-    { new: true },
-    (error, data) => {
-      if (error) {
-        console.log("error updating collection")
-      }
-    }
-  )
+  const newTodo = new todoModel(todoObj)
+  const listName = new todoListModel()
+
+  if (!newTodo) {
+    res.statusCode = 404
+    res.statusMessage = "Not found"
+    res.end("Not found")
+    console.log("ERROR")
+  } else {
+    console.log("SUCSESS")
+    console.log(newTodo)
+    res.status(200).json(newTodo)
+    newTodo.save(listName.todos)
+  }
 }
+
 
 exports.addNewTodoList = (req, res) => {
   const name = req.body
