@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import AllListPage from "./pages/AllListPage"
 import ListPage from "./pages/ListPage"
 import CreateList from "./components/CreateList"
+import UpdateTodo from "./pages/UpdateTodo"
 //import AllListsPage from "./pages/AllListPage"
 
 function App() {
@@ -10,12 +11,15 @@ function App() {
     <>
       <Router>
         <Switch>
+        <Route path="/todolist/todo/:id">
+            <UpdateTodo />
+          </Route>
           <Route path="/todolist/:id">
             <ListPage />
           </Route>
           <Route path="/">
             <AllListPage />
-            <CreateList path="/" />
+            <CreateList />
           </Route>
         </Switch>
       </Router>

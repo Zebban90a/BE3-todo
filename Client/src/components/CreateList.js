@@ -5,7 +5,7 @@ export default function CreateList() {
   const [titel, setTitel] = useState("")
 
   let submitHandler = (e) => {
-    //e.preventDefault()
+    
     console.log(`This is the titel ${titel.titel}`)
     axios.post("http://localhost:4000/", titel)
   }

@@ -1,15 +1,19 @@
 import React, { useState } from "react"
+import axios from "axios"
+import {  useParams } from "react-router-dom"
 
 export default function PostForm() {
   const [text, setText] = useState("")
+  const { id } = useParams()
 
-  let changeHandler = (e) => {
-    setText(e.target.value)
+ 
+  let submitHandler = (e) => {
+    axios.post(`http://localhost:4000/todolist/${id}`, text)
+    console.log(`This is the text ${text}`)
   }
 
-  let submitHandler = (e) => {
-    e.preventDefault()
-    console.log(`This is the text ${text}`)
+  let changeHandler = (e) => {
+    setText({ text: e.target.value})
   }
 
   return (
@@ -18,7 +22,7 @@ export default function PostForm() {
       <div>
         <form onSubmit={submitHandler} action="">
           <input
-            name="title"
+            name="text"
             type="text"
             placeholder="Ny todo"
             onChange={changeHandler}

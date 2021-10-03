@@ -15,7 +15,7 @@ router
   .post(todoController.addNewTodo)
 
   router
-  .route('/todolist/todoitem/:id')
+  .route('/todolist/todo/:id')
   .get(todoController.getOneListItem)
   .post()
 

@@ -31,8 +31,8 @@ export default function ListPage() {
           : 
           todos.map((item, index) => (
               <li key= {index}>
-                {item.titel} {item.createdAt} <button>DELETE</button>
-                <button>UPDATE</button>
+                {item.body} {item.createdAt} <button>DELETE</button>
+                <Link to ={`/todolist/todo/${item._id}`}><button>UPDATE</button></Link>
               </li>
             ))}
       </ul> }
