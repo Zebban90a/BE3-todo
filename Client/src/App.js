@@ -11,7 +11,7 @@ function App() {
     <>
       <Router>
         <Switch>
-        <Route path="/todolist/todo/:id">
+        <Route path="/todolist/:listId/todo/:todoId">
             <UpdateTodo />
           </Route>
           <Route path="/todolist/:id">

@@ -1,5 +1,6 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
+const mongoose = require('mongoose')
 
 //////////////////////// GET REQUESTS ////////////////////////
 exports.getAllTodoLists = async (req, res) => {
@@ -21,11 +22,13 @@ exports.getOneList = async (req, res) => {
 }
 
 exports.getOneListItem = async (req, res) => {
-  const id = req.params.id
-  
-  const schema = await todoListModel.findById(
-    id
-  )
+  const listId = req.params.listId;
+  const todoId = req.params.todoId;
+  const mId = mongoose.Types.ObjectId(todoId)
+
+  console.log('test')
+  const schema = await todoListModel.findById(listId)
+                                    .select({'todos' : {$elemMatch : {'_id' : mId}}})                  
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"

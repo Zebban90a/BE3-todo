@@ -4,16 +4,17 @@ import axios from 'axios'
 
 export default function UpdateTodo() {
     const [todo, setTodo]= useState([])
-    const { id } = useParams()
+    const { todoId, listId } = useParams()
 
     async function FetchTodo() {
-        const { data } = await axios.get(`http://localhost:4000/todolist/todo/${id}`)
+        const { data } = await axios.get(`http://localhost:4000/todolist/${listId}/todo/${todoId}`)
         setTodo(data)
     }
 
     useEffect(() => {
         FetchTodo()
         console.log(todo)
+
     }, [])
 
     return (

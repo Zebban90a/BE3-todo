@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const NewTodoListSchema = new Schema({
   titel: { type: String, default: "guitarist" },
-  todos: { type: Array, default: Array },
+  todos:[{ type: Schema.Types.ObjectId, ref: 'todoItem' }]
 })
 
 module.exports = mongoose.model("todoLists", NewTodoListSchema)
