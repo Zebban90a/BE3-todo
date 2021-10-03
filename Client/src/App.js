@@ -15,7 +15,7 @@ function App() {
           </Route>
           <Route path="/">
             <AllListPage />
-            <CreateList />
+            <CreateList path="/" />
           </Route>
         </Switch>
       </Router>

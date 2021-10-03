@@ -63,6 +63,7 @@ exports.addNewTodoList = (req, res) => {
     console.log("SUCSESS")
     console.log(listName)
     res.status(200).json(listName)
+    listName.save()
   }
 }
 

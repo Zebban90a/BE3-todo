@@ -17,6 +17,7 @@ export default function ListPage() {
     FetchList()
     setTodos(list.todos)
     console.log(list.todos)
+
   }, [])
 
   // for (let i = 0; i < list.todos.length; i++) {
