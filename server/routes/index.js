@@ -10,9 +10,12 @@ router
   .post(todoController.addNewTodoList)
 
   router
-  .route('/todolist/:id')
-  .get(todoController.getOneList)
+  .route('/todo/:listId')
   .post(todoController.addNewTodo)
+
+  router
+  .route('/todolist/:listId')
+  .get(todoController.getOneList)
 
   router
   .route('/todolist/:listId/todo/:todoId')

@@ -1,15 +1,15 @@
 import React, { useState } from "react"
 import axios from "axios"
-import {  useParams } from "react-router-dom"
 
-export default function PostForm() {
+export default function PostForm(props) {
+  
   const [text, setText] = useState("")
-  const { id } = useParams()
+  
 
  
   let submitHandler = (e) => {
-    axios.post(`http://localhost:4000/todolist/${id}`, text)
-    console.log(`This is the text ${text}`)
+    axios.post(`http://localhost:4000/todo/${props.listId}`, text)
+    console.log(`This is the text ${text}`) 
   }
 
   let changeHandler = (e) => {

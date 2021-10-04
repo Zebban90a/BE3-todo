@@ -13,13 +13,11 @@ export default function UpdateTodo() {
 
     useEffect(() => {
         FetchTodo()
-        console.log(todo)
-
     }, [])
 
     return (
         <div>
-            <h1>HEJ</h1>
+            <h1>{!todo ? "Todo not found" : todo.body}</h1>
         </div>
     )
 }

@@ -4,14 +4,13 @@ import { Link, useParams } from "react-router-dom"
 import CreateTodo from "../components/CreateTodo"
 
 export default function ListPage() {
-  const [list, setList] = useState([])
-  const [todos, setTodos] = useState([])
-  const { id } = useParams()
+  const [list, setTodoList] = useState([])
+  const { listId } = useParams()
 
   async function FetchList() {
-    const { data } = await axios.get(`http://localhost:4000/todolist/${id}`)
-    setList(data)
-    setTodos(data.todos)
+    const { data } = await axios.get(`http://localhost:4000/todolist/${listId}`)
+    console.log(data)
+    setTodoList(data)
   }
 
   useEffect(() => {
@@ -27,16 +26,16 @@ export default function ListPage() {
       
 
       { <ul>
-        {!todos ? "todos not found"
+        {!list.todos ? "todos not found"
           : 
-          todos.map((item, index) => (
+          list.todos.map((item, index) => (
               <li key= {index}>
                 {item.body} {item.createdAt} <button>DELETE</button>
-                <Link to ={`/todolist/todo/${item._id}`}><button>UPDATE</button></Link>
+                <Link to ={`/todolist/${listId}/todo/${item._id}`}><button>UPDATE</button></Link>
               </li>
             ))}
       </ul> }
-      <CreateTodo />
+      <CreateTodo listId={listId} />
     </>
   )
 }
