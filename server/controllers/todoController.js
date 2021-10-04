@@ -25,17 +25,13 @@ exports.getOneList = async (req, res) => {
 exports.getOneListItem = async (req, res) => {
   const listId = req.params.listId
   const todoId = req.params.todoId
-  const mId = mongoose.Types.ObjectId(todoId)
 
-  console.log("test")
-  const schema = await todoListModel
-    .findById(listId)
-    .select({ todos: { $elemMatch: { _id: mId } } })
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
   } else {
+    
     res.status(200).json(schema)
     console.log(schema)
   }
