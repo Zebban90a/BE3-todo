@@ -12,30 +12,31 @@ export default function ListPage() {
     const { data } = await axios.get(`http://localhost:4000/todolist/${id}`)
     setList(data)
     setTodos(data.todos)
+    console.log(todos)
   }
 
   useEffect(() => {
     FetchList()
-
   }, [])
-
-  
 
   return (
     <>
       <div>{!list ? "List not found" : list.titel}</div>
-      
 
-      { <ul>
-        {!todos ? "todos not found"
-          : 
-          todos.map((item, index) => (
-              <li key= {index}>
-                {item.body} {item.createdAt} <button>DELETE</button>
-                <Link to ={`/todolist/todo/${item._id}`}><button>UPDATE</button></Link>
-              </li>
-            ))}
-      </ul> }
+      {
+        <ul>
+          {!todos
+            ? "todos not found"
+            : todos.map((item, index) => (
+                <li key={index}>
+                  {item.body} {item.createdAt} <button>DELETE</button>
+                  <Link to={`/todolist/${id}/todo/${item._id}`}>
+                    <button>UPDATE</button>
+                  </Link>
+                </li>
+              ))}
+        </ul>
+      }
       <CreateTodo />
     </>
   )

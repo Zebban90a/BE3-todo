@@ -1,24 +1,21 @@
-const express = require('express');
-const router = express.Router();
-const todoController = require('../controllers/todoController');
-
+const express = require("express")
+const router = express.Router()
+const todoController = require("../controllers/todoController")
 
 /* GET home page. */
 router
-  .route('/')
+  .route("/")
   .get(todoController.getAllTodoLists)
   .post(todoController.addNewTodoList)
 
-  router
-  .route('/todolist/:id')
+router
+  .route("/todolist/:id")
   .get(todoController.getOneList)
   .post(todoController.addNewTodo)
 
-  router
-  .route('/todolist/:listId/todo/:todoId')
+router
+  .route("/todolist/:listId/todo/:todoId")
   .get(todoController.getOneListItem)
   .post()
 
-
-
-module.exports = router;
+module.exports = router

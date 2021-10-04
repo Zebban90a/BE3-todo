@@ -1,12 +1,13 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 //////////////////////// GET REQUESTS ////////////////////////
 exports.getAllTodoLists = async (req, res) => {
   const schema = await todoListModel.find({})
   res.status(200).json(schema)
 }
+
 
 exports.getOneList = async (req, res) => {
   const todoId = req.params.id
@@ -22,13 +23,14 @@ exports.getOneList = async (req, res) => {
 }
 
 exports.getOneListItem = async (req, res) => {
-  const listId = req.params.listId;
-  const todoId = req.params.todoId;
+  const listId = req.params.listId
+  const todoId = req.params.todoId
   const mId = mongoose.Types.ObjectId(todoId)
 
-  console.log('test')
-  const schema = await todoListModel.findById(listId)
-                                    .select({'todos' : {$elemMatch : {'_id' : mId}}})                  
+  console.log("test")
+  const schema = await todoListModel
+    .findById(listId)
+    .select({ todos: { $elemMatch: { _id: mId } } })
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -41,7 +43,7 @@ exports.getOneListItem = async (req, res) => {
 
 //////////////////////// POST REQUESTS ////////////////////////
 exports.addNewTodo = (req, res) => {
-  const listId = req.params.id;
+  const listId = req.params.id
   const todoObj = { body: req.body.text }
   const newTodo = new todoModel(todoObj)
   const listName = new todoListModel()
@@ -50,15 +52,23 @@ exports.addNewTodo = (req, res) => {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
-    console.log("ERROR")
   } else {
     console.log("SUCSESS")
-    console.log(newTodo)
+    console.log(`THIS IS THE OBJ ${newTodo}`)
     res.status(200).json(newTodo)
-    newTodo.save(listName.todos)
+
+    todoListModel.findOneAndUpdate(
+      { _id: listId },
+      { $push: { todos: newTodo } },
+      { new: true },
+      (error, data) => {
+        if (error) {
+          console.log("error updating collection")
+        }
+      }
+    )
   }
 }
-
 
 exports.addNewTodoList = (req, res) => {
   const name = req.body
@@ -78,7 +88,7 @@ exports.addNewTodoList = (req, res) => {
   }
 }
 
-exports.updateTodoItem = (req,res) => {
+exports.updateTodoItem = (req, res) => {
   const listId = req.params.id
   const todoObj = { body: req.body.text }
   todoListModel.findOneAndUpdate(
