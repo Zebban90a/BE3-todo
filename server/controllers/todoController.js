@@ -24,11 +24,8 @@ exports.getOneList = async (req, res) => {
 exports.getOneListItem = async (req, res) => {
   const listId = req.params.listId;
   const todoId = req.params.todoId;
-  const mId = mongoose.Types.ObjectId(todoId)
-
-  console.log('test')
-  const schema = await todoListModel.findById(listId)
-                                    .select({'todos' : {$elemMatch : {'_id' : mId}}})                  
+q
+                  
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -40,25 +37,32 @@ exports.getOneListItem = async (req, res) => {
 }
 
 //////////////////////// POST REQUESTS ////////////////////////
-exports.addNewTodo = (req, res) => {
+exports.addNewTodo =  (req, res) => {
   const listId = req.params.id;
   const todoObj = { body: req.body.text }
   const newTodo = new todoModel(todoObj)
-  const listName = new todoListModel()
-
+  
   if (!newTodo) {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
-    console.log("ERROR")
   } else {
-    console.log("SUCSESS")
-    console.log(newTodo)
     res.status(200).json(newTodo)
-    newTodo.save(listName.todos)
+    console.log(newTodo)
+    newTodo.save()
+
+    todoListModel.findOneAndUpdate(
+      { _id: listId },
+      { $push: { todos : newTodo } },
+      { new: true },
+      (error, data) => {
+        if (error) {
+          console.log("error updating collection")
+        }
+      }
+    )
   }
 }
-
 
 exports.addNewTodoList = (req, res) => {
   const name = req.body
@@ -69,9 +73,9 @@ exports.addNewTodoList = (req, res) => {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
-    console.log("ERROR")
+    
   } else {
-    console.log("SUCSESS")
+    
     console.log(listName)
     res.status(200).json(listName)
     listName.save()
