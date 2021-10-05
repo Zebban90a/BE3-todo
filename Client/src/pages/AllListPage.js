@@ -10,6 +10,11 @@ export default function AllListPage() {
     setAllLists(data)
   }
 
+  let deleteList = (id) => {
+    axios.delete(`http://localhost:4000/todolist/${id}`)
+    window.location.reload()
+  }
+
   useEffect(() => {
     FetchAllLists()
   }, [])
@@ -21,6 +26,7 @@ export default function AllListPage() {
           {allLists.map((item, index) => (
             <li key={index}>
               <Link to={`/todolist/${item._id}`}>{item.titel} </Link>
+              <button onClick={() => deleteList(item._id)}>DELETE</button>
             </li>
           ))}
         </ul>

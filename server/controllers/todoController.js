@@ -91,3 +91,9 @@ exports.deleteTodo = (req, res) => {
     console.log("Successful deletion")
   })
 }
+
+exports.deleteOneList = async (req, res) => {
+  const listId = req.params.listId
+  console.log(listId)
+  await todoListModel.findByIdAndDelete(listId)
+}
