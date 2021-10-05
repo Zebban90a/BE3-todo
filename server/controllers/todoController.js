@@ -81,4 +81,5 @@ exports.updateTodoItem = async (req,res) => {
   const updateTodo = await todoModel.findById(todoId)
   updateTodo.set(todoObj)
   await updateTodo.save()
+  console.log(updateTodo)
 };
