@@ -1,6 +1,7 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
 const mongoose = require('mongoose')
+const { update } = require("../models/todoLists")
 
 //////////////////////// GET REQUESTS ////////////////////////
 exports.getAllTodoLists = async (req, res) => {
@@ -74,17 +75,10 @@ exports.addNewTodoList = (req, res) => {
   }
 };
 
-exports.updateTodoItem = (req,res) => {
-  const listId = req.params.id
+exports.updateTodoItem = async (req,res) => {
+  const todoId = req.params.todoId
   const todoObj = { body: req.body.text }
-  todoListModel.findOneAndUpdate(
-    { _id: listId },
-    { $push: { todos: new todoModel(todoObj) } },
-    { new: true },
-    (error, data) => {
-      if (error) {
-        console.log("error updating collection")
-      }
-    }
-  )
+  const updateTodo = await todoModel.findById(todoId)
+  updateTodo.set(todoObj)
+  await updateTodo.save()
 };
