@@ -8,17 +8,13 @@ router
   .get(todoController.getAllTodoLists)
   .post(todoController.addNewTodoList)
 
-  router
-  .route('/todo/:listId')
-  .post(todoController.addNewTodo)
+router.route("/todo/:listId").post(todoController.addNewTodo)
 
-  router
-  .route('/todolist/:listId')
-  .get(todoController.getOneList)
+router.route("/todolist/:listId").get(todoController.getOneList)
 
-  router
-  .route('/todolist/:listId/todo/:todoId')
+router
+  .route("/todolist/:listId/todo/:todoId")
   .get(todoController.getOneListItem)
-  .post()
+  .post(todoController.updateTodoItem)
 
 module.exports = router

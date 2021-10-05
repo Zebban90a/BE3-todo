@@ -8,11 +8,10 @@ exports.getAllTodoLists = async (req, res) => {
   res.status(200).json(schema)
 }
 
-
 exports.getOneList = async (req, res) => {
   const listId = req.params.listId
   console.log(listId)
-  const schema = await todoListModel.findById(listId).populate('todos')
+  const schema = await todoListModel.findById(listId).populate("todos")
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -23,31 +22,29 @@ exports.getOneList = async (req, res) => {
 }
 
 exports.getOneListItem = async (req, res) => {
-  
-  const todoId = req.params.todoId;
+  const todoId = req.params.todoId
 
-  const schema = await todoModel.findById(todoId)                
+  const schema = await todoModel.findById(todoId)
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
   } else {
-    
     res.status(200).json(schema)
     console.log(schema)
   }
 }
 
 //////////////////////// POST REQUESTS ////////////////////////
-exports.addNewTodo =  (req, res) => {
+exports.addNewTodo = (req, res) => {
   const listId = req.params.listId
   const todoObj = { body: req.body.text }
   const newTodo = new todoModel(todoObj)
   newTodo.save()
-  
+
   todoListModel.findOneAndUpdate(
     { _id: listId },
-    { $push: { todos : newTodo } },
+    { $push: { todos: newTodo } },
     { new: true },
     (error, data) => {
       if (error) {
@@ -67,26 +64,15 @@ exports.addNewTodoList = (req, res) => {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
-    
   } else {
-    
     console.log(listName)
     res.status(200).json(listName)
     listName.save()
   }
-};
+}
 
 exports.updateTodoItem = (req, res) => {
-  const listId = req.params.id
   const todoObj = { body: req.body.text }
-  todoListModel.findOneAndUpdate(
-    { _id: listId },
-    { $push: { todos: new todoModel(todoObj) } },
-    { new: true },
-    (error, data) => {
-      if (error) {
-        console.log("error updating collection")
-      }
-    }
-  )
-};
+  const todoId = req.params.todoId
+  todoModel.findAndUpdate(todoId).update(todoObj).save()
+}
