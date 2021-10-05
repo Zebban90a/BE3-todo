@@ -20,6 +20,7 @@ export default function ListPage() {
 
   let deleteTodo = (id) => {
     axios.delete(`http://localhost:4000/todolist/${listId}/todo/${id}`)
+    window.location.reload()
   }
 
   return (
