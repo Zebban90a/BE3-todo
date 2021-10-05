@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from 'axios'
+import CreateTodo from '../components/CreateTodo'
 
 export default function UpdateTodo() {
     const [todo, setTodo]= useState([])
@@ -16,8 +17,8 @@ export default function UpdateTodo() {
     }, [])
 
     return (
-        <div>
-            <h1>{!todo ? "Todo not found" : todo.body}</h1>
-        </div>
+        <>
+        <CreateTodo todoBody={todo.body}/>
+        </>
     )
-}
+};
