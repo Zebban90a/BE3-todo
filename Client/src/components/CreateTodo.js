@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-export default function PostForm(props) {
+export default function PostForm({listId}) {
   
   const [text, setText] = useState("")
   
 
  
   let submitHandler = (e) => {
-    axios.post(`http://localhost:4000/todo/${props.listId}`, text)
+    axios.post(`http://localhost:4000/todo/${listId}`, text)
     console.log(`This is the text ${text}`) 
   }
 
