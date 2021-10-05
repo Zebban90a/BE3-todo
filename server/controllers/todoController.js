@@ -1,6 +1,7 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
+const { update } = require("../models/todoLists")
 
 //////////////////////// GET REQUESTS ////////////////////////
 exports.getAllTodoLists = async (req, res) => {
@@ -71,8 +72,10 @@ exports.addNewTodoList = (req, res) => {
   }
 }
 
-exports.updateTodoItem = (req, res) => {
-  const todoObj = { body: req.body.text }
+exports.updateTodoItem = async (req,res) => {
   const todoId = req.params.todoId
-  todoModel.findAndUpdate(todoId).update(todoObj).save()
-}
+  const todoObj = { body: req.body.text }
+  const updateTodo = await todoModel.findById(todoId)
+  updateTodo.set(todoObj)
+  await updateTodo.save()
+};
