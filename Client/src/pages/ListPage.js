@@ -9,7 +9,6 @@ export default function ListPage() {
 
   async function FetchList() {
     const { data } = await axios.get(`http://localhost:4000/todolist/${listId}`)
-    console.log(data)
     setTodoList(data)
   }
 
@@ -17,20 +16,31 @@ export default function ListPage() {
     FetchList()
   }, [])
 
+  //////////////////////// Delete function ////////////////////////
+
+  let deleteTodo = (id) => {
+    axios.delete(`http://localhost:4000/todolist/${listId}/todo/${id}`)
+  }
+
   return (
     <>
       <div>{!list ? "List not found" : list.titel}</div>
 
-      { <ul>
-        {!list.todos ? "todos not found"
-          : 
-          list.todos.map((item, index) => (
-              <li key= {index}>
-                {item.body} {item.createdAt} <button>DELETE</button>
-                <Link to ={`/todolist/${listId}/todo/${item._id}`}><button>UPDATE</button></Link>
-              </li>
-            ))}
-      </ul> }
+      {
+        <ul>
+          {!list.todos
+            ? "todos not found"
+            : list.todos.map((item, index) => (
+                <li key={index}>
+                  {item.body} {item.createdAt}{" "}
+                  <button onClick={() => deleteTodo(item._id)}>DELETE</button>
+                  <Link to={`/todolist/${listId}/todo/${item._id}`}>
+                    <button>UPDATE</button>
+                  </Link>
+                </li>
+              ))}
+        </ul>
+      }
       <CreateTodo listId={listId} />
     </>
   )

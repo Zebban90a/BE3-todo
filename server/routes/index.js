@@ -16,6 +16,7 @@ router
   .route("/todolist/:listId/todo/:todoId")
   .get(todoController.getOneListItem)
   .post(todoController.updateTodoItem)
+  .delete(todoController.deleteTodo)
 
 
 

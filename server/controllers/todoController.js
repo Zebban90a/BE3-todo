@@ -1,6 +1,6 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const { update } = require("../models/todoLists")
 
 //////////////////////// GET REQUESTS ////////////////////////
@@ -72,11 +72,22 @@ exports.addNewTodoList = (req, res) => {
   }
 }
 
-exports.updateTodoItem = async (req,res) => {
+exports.updateTodoItem = async (req, res) => {
   const todoId = req.params.todoId
   const todoObj = { body: req.body.text }
   const updateTodo = await todoModel.findById(todoId)
   updateTodo.set(todoObj)
   await updateTodo.save()
   console.log(updateTodo)
-};
+}
+
+//////////////////////// DELETE REQUEST ////////////////////////
+
+exports.deleteTodo = (req, res) => {
+  const todoId = req.params.todoId
+
+  todoModel.findByIdAndDelete(todoId, (err) => {
+    if (err) console.log(err)
+    console.log("Successful deletion")
+  })
+}
