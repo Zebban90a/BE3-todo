@@ -10,9 +10,9 @@ exports.getAllTodoLists = async (req, res) => {
 
 
 exports.getOneList = async (req, res) => {
-  const todoId = req.params.id
-  console.log(todoId)
-  const schema = await todoListModel.findById(todoId)
+  const listId = req.params.listId
+  console.log(listId)
+  const schema = await todoListModel.findById(listId).populate('todos')
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -23,9 +23,10 @@ exports.getOneList = async (req, res) => {
 }
 
 exports.getOneListItem = async (req, res) => {
-  const listId = req.params.listId
-  const todoId = req.params.todoId
+  
+  const todoId = req.params.todoId;
 
+  const schema = await todoModel.findById(todoId)                
   if (!schema) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -38,32 +39,23 @@ exports.getOneListItem = async (req, res) => {
 }
 
 //////////////////////// POST REQUESTS ////////////////////////
-exports.addNewTodo = (req, res) => {
-  const listId = req.params.id
+exports.addNewTodo =  (req, res) => {
+  const listId = req.params.listId
   const todoObj = { body: req.body.text }
   const newTodo = new todoModel(todoObj)
-  const listName = new todoListModel()
-
-  if (!newTodo) {
-    res.statusCode = 404
-    res.statusMessage = "Not found"
-    res.end("Not found")
-  } else {
-    console.log("SUCSESS")
-    console.log(`THIS IS THE OBJ ${newTodo}`)
-    res.status(200).json(newTodo)
-
-    todoListModel.findOneAndUpdate(
-      { _id: listId },
-      { $push: { todos: newTodo } },
-      { new: true },
-      (error, data) => {
-        if (error) {
-          console.log("error updating collection")
-        }
+  newTodo.save()
+  
+  todoListModel.findOneAndUpdate(
+    { _id: listId },
+    { $push: { todos : newTodo } },
+    { new: true },
+    (error, data) => {
+      if (error) {
+        console.log("error updating collection")
       }
-    )
-  }
+    }
+  )
+  res.status(200)
 }
 
 exports.addNewTodoList = (req, res) => {
@@ -75,14 +67,14 @@ exports.addNewTodoList = (req, res) => {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
-    console.log("ERROR")
+    
   } else {
-    console.log("SUCSESS")
+    
     console.log(listName)
     res.status(200).json(listName)
     listName.save()
   }
-}
+};
 
 exports.updateTodoItem = (req, res) => {
   const listId = req.params.id
@@ -97,27 +89,4 @@ exports.updateTodoItem = (req, res) => {
       }
     }
   )
-}
-
-/*exports.postItem = async (req, res) => {
-    const todo = new NewTodoItemSchema ({
-      titel: 'Kaffe3', 
-      body: 'Måste köpa kaffe imorgon',
-    })
-    
-    todo
-    .save()
-      .then((doc) => {
-        console.log(doc);
-      })
-      .catch((err) => {
-        console.log('ERROR:', err);
-      });
-  } */
-
-/*exports.getListItems = async (req, res) => {
-    const listId = req.params.id
-
-    const schema = await NewTodoItemSchema.find({listId});
-    res.status(200).json(schema);
-  } */
+};
