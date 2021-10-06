@@ -11,12 +11,12 @@ exports.userLogin = (req, res, next) => {
     }
 
     if (!user) {
-      return res.redirect('/users/login');
+      return res.redirect('/fail');
     }
 
     else {
       console.log(user)
-      return res.redirect('/');
+      return res.redirect('/success');
     }
   
   })(req, res, next); 
@@ -30,7 +30,7 @@ exports.registerUser = async (req, res) => {
               //om error
               if(err){
                   console.log(err);
-                  res.render("register");
+                  res.send("register");
               }
               //annars
               passport.authenticate("local")(req,res,function(){

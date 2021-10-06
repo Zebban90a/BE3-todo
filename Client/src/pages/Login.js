@@ -8,19 +8,18 @@ export default function Login() {
     const [password, setPassword] = useState("")
 
     let submitHandler = (e) => {
-        console.log(`This is the text ${console.log({password})}`)
-        axios.post(`http://localhost:4000/users/login`, {username: 'Sebbanebättre', password: '1234'})
+
+        console.log({password: password, username: userName})
+        axios.post(`http://localhost:4000/users/login`, {username : userName, password: password})
         
         
       }
     
     let changeHandler = (e) => {
-        if(e.target.name === userName) {
+        if(e.target.name === 'username') {
             setUsername(e.target.value)
-            console.log(setUsername)
-        } else if(e.target.name === password) {
+        } else if (e.target.name === 'password')  
             setPassword(e.target.value)
-        } 
     }
     return (
         <div>

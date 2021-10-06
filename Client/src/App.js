@@ -5,6 +5,7 @@ import ListPage from "./pages/ListPage";
 import CreateList from "./components/CreateList";
 import UpdateTodo from "./pages/UpdateTodo";
 import Login from "./pages/Login";
+import todo from "./components/todo";
 //import AllListsPage from "./pages/AllListPage"
 
 function App() {
@@ -18,9 +19,10 @@ function App() {
           <Route path="/todolist/:listId">
             <ListPage />
           </Route>
-          <Route path="/login">
+          <Route path="/users/login">
             <Login />
           </Route>
+          <Route path="/users/fail" component={todo}/>
           <Route path="/">
             <AllListPage />
             <CreateList />
