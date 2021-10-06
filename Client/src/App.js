@@ -1,9 +1,10 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import AllListPage from "./pages/AllListPage"
-import ListPage from "./pages/ListPage"
-import CreateList from "./components/CreateList"
-import UpdateTodo from "./pages/UpdateTodo"
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AllListPage from "./pages/AllListPage";
+import ListPage from "./pages/ListPage";
+import CreateList from "./components/CreateList";
+import UpdateTodo from "./pages/UpdateTodo";
+import Login from "./pages/Login";
 //import AllListsPage from "./pages/AllListPage"
 
 function App() {
@@ -11,11 +12,14 @@ function App() {
     <>
       <Router>
         <Switch>
-        <Route path="/todolist/:listId/todo/:todoId">
+          <Route path="/todolist/:listId/todo/:todoId">
             <UpdateTodo />
           </Route>
           <Route path="/todolist/:listId">
             <ListPage />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/">
             <AllListPage />
@@ -24,7 +28,7 @@ function App() {
         </Switch>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
