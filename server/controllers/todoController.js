@@ -74,9 +74,13 @@ exports.addNewTodoList = (req, res) => {
 
 exports.updateTodoItem = async (req, res) => {
   const todoId = req.params.todoId
-  const todoObj = { body: req.body.text }
+
+  const todoObj = {
+    body: req.body.text,
+  }
   const updateTodo = await todoModel.findById(todoId)
   updateTodo.set(todoObj)
+
   await updateTodo.save()
   console.log(updateTodo)
 }

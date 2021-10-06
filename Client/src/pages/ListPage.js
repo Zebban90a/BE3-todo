@@ -33,7 +33,7 @@ export default function ListPage() {
             ? "todos not found"
             : list.todos.map((item, index) => (
                 <li key={index}>
-                  {item.body} {item.createdAt}{" "}
+                  {item.body} {item.updatedAt}{" "}
                   <button onClick={() => deleteTodo(item._id)}>DELETE</button>
                   <Link to={`/todolist/${listId}/todo/${item._id}`}>
                     <button>UPDATE</button>
