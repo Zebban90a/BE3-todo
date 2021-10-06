@@ -1,27 +1,25 @@
-const connectEnsureLogin = require('connect-ensure-login');
 const userModel = require('../models/user')
 const passport = require('passport')
 
+
 exports.userLogin = (req, res, next) => {
-  passport.authenticate('local',
+  
+  passport.authenticate('local', 
   (err, user, info) => {
     if (err) {
       return next(err);
     }
 
     if (!user) {
-      return res.redirect('/login');
+      return res.redirect('/users/login');
     }
 
-    req.logIn(user, function(err) {
-      if (err) {
-        return next(err);
-      }
-
+    else {
+      console.log(user)
       return res.redirect('/');
-    })
-
-  })(req, res, next);
+    }
+  
+  })(req, res, next); 
 };
 
 exports.registerUser = async (req, res) => {

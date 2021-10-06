@@ -28,9 +28,6 @@ app.use(cookieParser());
 app.use(expressSession);
 
 
-
-
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 //passport stuff
