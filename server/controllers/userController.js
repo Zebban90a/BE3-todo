@@ -3,7 +3,10 @@ const passport = require('passport')
 
 
 exports.userLogin = (req, res, next) => {
-  
+  console.log('dyssman')
+  /*passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true }) */
   passport.authenticate('local', 
   (err, user, info) => {
     if (err) {
@@ -11,15 +14,16 @@ exports.userLogin = (req, res, next) => {
     }
 
     if (!user) {
-      return res.redirect('/fail');
+      return res.status(404);
     }
 
     else {
       console.log(user)
-      return res.redirect('/success');
+      return res.redirect("http://localhost:3000/");
     }
   
   })(req, res, next); 
+  
 };
 
 exports.registerUser = async (req, res) => {
@@ -40,6 +44,10 @@ exports.registerUser = async (req, res) => {
 }
 
 
-exports.getUserObject = () => {
-  
+exports.getLoginpage = (req, res) => {
+
+  res.status(500).json({
+    status: 'error',
+    message: 'this route is not defined',
+  });
 };
