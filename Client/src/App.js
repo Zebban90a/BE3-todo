@@ -19,10 +19,9 @@ function App() {
           <Route path="/todolist/:listId">
             <ListPage />
           </Route>
-          <Route path="/users/login">
+          <Route path="/login">
             <Login />
           </Route>
-          <Route path="/users/fail" component={todo}/>
           <Route path="/">
             <AllListPage />
             <CreateList />
