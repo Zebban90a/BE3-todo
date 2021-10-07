@@ -7,7 +7,7 @@ const cors = require('cors');
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const UserDetails = require('./models/user')
-
+const loggedInFunction = require('./middleware/isLoggedIn')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -37,14 +37,12 @@ passport.use(new LocalStrategy(UserDetails.authenticate()));
 
 app.use(passport.initialize());
 app.use(passport.session());
-/*app.use(isLoggedIn)
+//app.use(loggedInFunction.isLoggedIn)
 
-function isLoggedIn(req,res,next) {
-  if(req.isAuthenticated()){
-      return next();
-  }
-  res.redirect("/login");
-} */
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  next();
+})
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {

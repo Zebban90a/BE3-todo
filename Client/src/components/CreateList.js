@@ -1,13 +1,15 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-export default function CreateList() {
+
+export default function CreateList({userId}) {
   const [titel, setTitel] = useState("")
+  
 
   let submitHandler = (e) => {
     
-    console.log(`This is the titel ${titel.titel}`)
-    axios.post("http://localhost:4000/", titel)
+    console.log(`This is the titel ${userId}`)
+    axios.post(`http://localhost:4000/${userId}`, titel)
   }
 
   let changeHandler = (e) => {

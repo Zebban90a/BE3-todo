@@ -22,9 +22,8 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/">
+          <Route path="/:userId">
             <AllListPage />
-            <CreateList />
           </Route>
         </Switch>
       </Router>

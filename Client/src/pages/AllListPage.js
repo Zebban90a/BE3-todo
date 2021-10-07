@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import CreateList from "../components/CreateList"
 
-export default function AllListPage() {
+export default function AllListPage({}) {
   const [allLists, setAllLists] = useState([])
+  const { userId } = useParams()
 
   async function FetchAllLists() {
-    const { data } = await axios.get("http://localhost:4000/")
+    const { data } = await axios.get(`http://localhost:4000/${userId}`)
     setAllLists(data)
   }
 
@@ -30,6 +32,7 @@ export default function AllListPage() {
             </li>
           ))}
         </ul>
+        <CreateList userId={userId} />
       </div>
     </>
   )

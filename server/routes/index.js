@@ -1,12 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const todoController = require("../controllers/todoController")
+const LoggedInMiddleWare = require("../middleware/isLoggedIn")
 
 /* GET home page. */
 router
-  .route("/")
+  .route("/:userId")
   .get(todoController.getAllTodoLists)
   .post(todoController.addNewTodoList)
+
 
 router
   .route("/todo/:listId")

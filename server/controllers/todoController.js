@@ -1,10 +1,14 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const mongoose = require("mongoose")
-const { update } = require("../models/todoLists")
+const mongoose = require('mongoose')
+const userModel = require("../models/user")
+//const middlewareLoggedin = require('../middleware/isLoggedIn')
+
 
 //////////////////////// GET REQUESTS ////////////////////////
-exports.getAllTodoLists = async (req, res) => {
+
+
+exports.getAllTodoLists = async (req, res, ) => {
   const schema = await todoListModel.find({})
   res.status(200).json(schema)
 }
@@ -56,11 +60,13 @@ exports.addNewTodo = (req, res) => {
   res.status(200)
 }
 
-exports.addNewTodoList = (req, res) => {
-  const name = req.body
-  console.log(req.body)
-  console.log(`Det här är namnet ${name.titel}`)
-  const listName = new todoListModel(name)
+exports.addNewTodoList = async (req, res) => {
+  const userId = req.params.userId
+  
+  
+  //const name = {titel: req.body.titel, user: user }
+ 
+  const listName = await new todoListModel({titel: req.body.titel, user: userId} )
   if (!listName) {
     res.statusCode = 404
     res.statusMessage = "Not found"
@@ -68,6 +74,7 @@ exports.addNewTodoList = (req, res) => {
   } else {
     console.log(listName)
     res.status(200).json(listName)
+    console.log(userId) 
     listName.save()
   }
 }

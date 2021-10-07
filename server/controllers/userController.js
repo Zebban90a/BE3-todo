@@ -15,7 +15,7 @@ exports.userLogin = (req, res, next) => {
       return res.status(404).redirect("http://localhost:3000/login")
     } else {
       console.log(user)
-      return res.redirect("http://localhost:3000/")
+      return res.redirect("http://localhost:3000/" + user._id )
     }
   })(req, res, next)
 }
