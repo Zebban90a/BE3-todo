@@ -33,18 +33,18 @@ passport.use(new LocalStrategy(UserDetails.authenticate()));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(isLoggedIn)
+//app.use(isLoggedIn)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //passport stuff
-function isLoggedIn(req,res,next) {
+/*function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()){
       return next();
   }
   res.redirect("http://localhost:3000/login");
-}
+} */
 
 /*app.use(function(req,res,next){
   res.locals.currentUser = req.user;

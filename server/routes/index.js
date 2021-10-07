@@ -30,7 +30,7 @@ router
   .post(todoController.addNewTodo)
 
 router.route("/todolist/:listId")
-  .get(connectEnsureLogin.ensureLoggedIn, todoController.getOneList)
+  .get(todoController.getOneList)
   .delete(todoController.deleteOneList)
 
 router
