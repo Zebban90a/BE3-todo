@@ -9,7 +9,9 @@ const userModel = require("../models/user")
 
 
 exports.getAllTodoLists = async (req, res, ) => {
-  const schema = await todoListModel.find({})
+  const userId = req.params.userId
+
+  const schema = await todoListModel.find({user: userId})
   res.status(200).json(schema)
 }
 
