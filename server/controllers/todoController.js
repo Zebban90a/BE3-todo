@@ -1,21 +1,21 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const mongoose = require('mongoose')
-const userModel = require("../models/user")
-//const middlewareLoggedin = require('../middleware/isLoggedIn')
+const connectEnsureLogin = require('connect-ensure-login');
 
 
 //////////////////////// GET REQUESTS ////////////////////////
 
 
 exports.getAllTodoLists = async (req, res, ) => {
+  
   const userId = req.params.userId
 
   const schema = await todoListModel.find({user: userId})
   res.status(200).json(schema)
 }
 
-exports.getOneList = async (req, res) => {
+exports.getOneList =  async (req, res) => {
+
   const listId = req.params.listId
   console.log(listId)
   const schema = await todoListModel.findById(listId).populate("todos")
@@ -28,7 +28,7 @@ exports.getOneList = async (req, res) => {
   }
 }
 
-exports.getOneListItem = async (req, res) => {
+exports.getOneListItem =  async (req, res) => {
   const todoId = req.params.todoId
 
   const schema = await todoModel.findById(todoId)
@@ -110,3 +110,4 @@ exports.deleteOneList = async (req, res) => {
   console.log(listId)
   await todoListModel.findByIdAndDelete(listId)
 }
+

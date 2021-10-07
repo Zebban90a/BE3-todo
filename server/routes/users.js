@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const userController = require('../controllers/userController')
-
+const loggedInMiddleWare = require("../middleware/isLoggedIn")
 
 
   router

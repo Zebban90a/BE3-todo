@@ -1,9 +1,24 @@
 const express = require("express")
 const router = express.Router()
 const todoController = require("../controllers/todoController")
-const LoggedInMiddleWare = require("../middleware/isLoggedIn")
+const connectEnsureLogin = require('connect-ensure-login');
+
+
 
 /* GET home page. */
+
+
+/*function isLoggedIn(req,res,next) {
+  if(req.isAuthenticated()){
+    console.log('lol')
+      return next();
+      
+  }
+  console.log('lol från redirect')
+  res.redirect("/login");
+} */
+
+
 router
   .route("/:userId")
   .get(todoController.getAllTodoLists)
@@ -15,7 +30,7 @@ router
   .post(todoController.addNewTodo)
 
 router.route("/todolist/:listId")
-  .get(todoController.getOneList)
+  .get(connectEnsureLogin.ensureLoggedIn, todoController.getOneList)
   .delete(todoController.deleteOneList)
 
 router
@@ -24,6 +39,6 @@ router
   .post(todoController.updateTodoItem)
   .delete(todoController.deleteTodo)
 
-
+  
 
 module.exports = router

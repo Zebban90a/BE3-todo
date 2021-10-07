@@ -1,15 +1,9 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
-
-
-
-export default function Login() {
-  
-
+export default function Register() {
     return (
         <div>
-            <form action="http://localhost:4000/users/login" method="POST">
+            <form action="http://localhost:4000/users/register" method="POST">
                 <input
                 placeholder='username'
                 name='username'
@@ -21,11 +15,8 @@ export default function Login() {
                 name='password'
                 
                 ></input>
-                <button type="submit">Logga in</button>
+                <button type="submit">Skapa</button>
             </form>
-            <h2>Skapa konto!</h2>
-            <Link to="/register"><button>Skapa konto</button></Link>
         </div>
-    ) 
-
+    )
 }

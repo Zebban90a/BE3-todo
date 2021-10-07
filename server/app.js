@@ -15,8 +15,8 @@ var app = express();
 
 const expressSession = require('express-session')({
   secret: 'secret',
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false
 });
 
 
@@ -27,19 +27,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(expressSession);
 
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-//passport stuff
 passport.serializeUser(UserDetails.serializeUser());
 passport.deserializeUser(UserDetails.deserializeUser());
 passport.use(new LocalStrategy(UserDetails.authenticate()));
 
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(loggedInFunction.isLoggedIn)
+app.use(isLoggedIn)
 
-app.use(function(req,res,next){
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+//passport stuff
+function isLoggedIn(req,res,next) {
+  if(req.isAuthenticated()){
+      return next();
+  }
+  res.redirect("http://localhost:3000/login");
+}
+
+/*app.use(function(req,res,next){
   res.locals.currentUser = req.user;
   next();
 })

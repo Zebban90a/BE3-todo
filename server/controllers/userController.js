@@ -20,12 +20,11 @@ exports.userLogin = (req, res, next) => {
   })(req, res, next)
 }
 
-exports.registerUser = async (req, res) => {
+exports.registerUser =  (req, res) => {
   userModel.register(
     userModel({
       username: req.body.username,
-    }),
-    req.body.password,
+    }), req.body.password,
     function (err, user) {
       //om error
       if (err) {
@@ -34,7 +33,7 @@ exports.registerUser = async (req, res) => {
       }
       //annars
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/login")
+        res.redirect("http://localhost:3000/login")
       })
     }
   )
