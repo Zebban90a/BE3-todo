@@ -52,7 +52,7 @@ export default function ListPage() {
                   <StyledCard key={index} onClick={() => Toggle()}>
                     <ReactMarkdown children={item.body} />
                     <button onClick={() => deleteTodo(item._id)}>DELETE</button>
-                    <Modal show={modal} />
+                    <Modal show={modal} title="My Modal" close={Toggle} />
                   </StyledCard>
                 ))}
       </StyledWrapper>  
