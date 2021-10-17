@@ -8,7 +8,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const UserDetails = require('./models/user')
 const loggedInFunction = require('./middleware/isLoggedIn')
-var indexRouter = require('./routes/index');
+var todoRouter = require('./routes/todo');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -35,8 +35,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 //app.use(isLoggedIn)
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/todo', todoRouter);
+//app.use('/users', usersRouter);
 
 //passport stuff
 /*function isLoggedIn(req,res,next) {

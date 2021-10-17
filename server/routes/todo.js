@@ -20,25 +20,18 @@ const connectEnsureLogin = require('connect-ensure-login');
 
 
 router
-  .route("/:userId")
+  .route("/")
   .get(todoController.getAllTodoLists)
   .post(todoController.addNewTodoList)
 
 
 router
-  .route("/todo/:listId")
-  .post(todoController.addNewTodo)
-
-router.route("/todolist/:listId")
+  .route("/:listId")
   .get(todoController.getOneList)
+  .post(todoController.addNewTodo)
   .delete(todoController.deleteOneList)
 
-router
-  .route("/todolist/:listId/todo/:todoId")
-  .get(todoController.getOneListItem)
-  .post(todoController.updateTodoItem)
+router.route("/:todoId")
   .delete(todoController.deleteTodo)
-
-  
 
 module.exports = router

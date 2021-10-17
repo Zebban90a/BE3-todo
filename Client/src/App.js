@@ -14,7 +14,7 @@ function App() {
           <Route path="/todolist/:listId/todo/:todoId">
             <UpdateTodo />
           </Route>
-          <Route path="/todolist/:listId">
+          <Route path="/:listId">
             <ListPage />
           </Route>
           <Route path="/login">
@@ -23,7 +23,7 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/:userId">
+          <Route path="/">
             <AllListPage />
           </Route>
         </Switch>

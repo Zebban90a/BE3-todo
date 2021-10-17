@@ -8,12 +8,12 @@ export default function AllListPage({}) {
   const { userId } = useParams()
 
   async function FetchAllLists() {
-    const { data } = await axios.get(`http://localhost:4000/${userId}`)
+    const { data } = await axios.get(`http://localhost:4000/api/todo`)
     setAllLists(data)
   }
 
   let deleteList = (id) => {
-    axios.delete(`http://localhost:4000/todolist/${id}`)
+    axios.delete(`http://localhost:4000/api/todo/${id}`)
     window.location.reload()
   }
 
@@ -24,6 +24,7 @@ export default function AllListPage({}) {
   return (
     <>
       <div>
+      <CreateList userId={userId} />
         <ul>
           {allLists.map((item, index) => (
             <li key={index}>
@@ -32,7 +33,6 @@ export default function AllListPage({}) {
             </li>
           ))}
         </ul>
-        <CreateList userId={userId} />
       </div>
     </>
   )

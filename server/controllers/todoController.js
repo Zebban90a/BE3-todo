@@ -8,9 +8,9 @@ const connectEnsureLogin = require('connect-ensure-login');
 
 exports.getAllTodoLists = async (req, res, ) => {
   
-  const userId = req.params.userId
+  //const userId = req.params.userId
 
-  const schema = await todoListModel.find({user: userId})
+  const schema = await todoListModel.find()
   res.status(200).json(schema)
 }
 
@@ -98,6 +98,7 @@ exports.updateTodoItem = async (req, res) => {
 
 exports.deleteTodo = (req, res) => {
   const todoId = req.params.todoId
+  console.log(todoId)
 
   todoModel.findByIdAndDelete(todoId, (err) => {
     if (err) console.log(err)
