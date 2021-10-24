@@ -56,6 +56,7 @@ export default function ListPage() {
               : list.todos.map((item) => (
                   <StyledCard key={item._id} onClick={() => Toggle(item.body, item._id)}>
                     <ReactMarkdown children={item.body} />
+                    <p>{item.updatedAt}</p>
                     <button onClick={() => deleteTodo(item._id)}>DELETE</button>
                   </StyledCard>
                 ))}

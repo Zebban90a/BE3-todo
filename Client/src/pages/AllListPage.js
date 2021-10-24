@@ -28,7 +28,7 @@ export default function AllListPage({}) {
         <ul>
           {allLists.map((item, index) => (
             <li key={index}>
-              <Link to={`/todolist/${item._id}`}>{item.titel} </Link>
+              <Link to={`/${item._id}`}>{item.titel} </Link>
               <button onClick={() => deleteList(item._id)}>DELETE</button>
             </li>
           ))}
