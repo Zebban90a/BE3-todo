@@ -23,8 +23,13 @@ export default function ListPage() {
   const [list, setTodoList] = useState([])
   const { listId } = useParams()
   const [modal, setModal] = useState(false);
-  const Toggle = () => setModal(!modal);
-  console.log(modal)
+  const Toggle = (modalText, todoId) => {
+    setmodalTodoId(todoId)
+    setModalText(modalText)
+    setModal(!modal)
+  }
+  const [modalTodoId, setmodalTodoId] = useState('');
+  const [modalText, setModalText] = useState('');
   async function FetchList() {
     const { data } = await axios.get(`http://localhost:4000/api/todo/${listId}`)
     setTodoList(data)
@@ -48,13 +53,13 @@ export default function ListPage() {
       <StyledWrapper>
             {!list.todos
               ? "todos not found"
-              : list.todos.map((item, index) => (
-                  <StyledCard key={index} onClick={() => Toggle()}>
+              : list.todos.map((item) => (
+                  <StyledCard key={item._id} onClick={() => Toggle(item.body, item._id)}>
                     <ReactMarkdown children={item.body} />
                     <button onClick={() => deleteTodo(item._id)}>DELETE</button>
-                    <Modal show={modal} title="My Modal" close={Toggle} />
                   </StyledCard>
                 ))}
+                <Modal show={modal} data={modalText} id={modalTodoId} title="My Modal" close={Toggle} />
       </StyledWrapper>  
     </>
   )

@@ -33,5 +33,6 @@ router
 
 router.route("/:todoId")
   .delete(todoController.deleteTodo)
+  .patch(todoController.updateTodoItem)
 
 module.exports = router
