@@ -1,29 +1,27 @@
-const express = require("express")
-const router = express.Router()
-const todoController = require("../controllers/todoController")
-const LoggedInMiddleWare = require("../middleware/isLoggedIn")
+const express = require('express');
+
+const router = express.Router();
+const todoController = require('../controllers/todoController');
+const LoggedInMiddleWare = require('../middleware/isLoggedIn');
 
 /* GET home page. */
 router
-  .route("/:userId")
+  .route('/:userId')
   .get(todoController.getAllTodoLists)
-  .post(todoController.addNewTodoList)
-
+  .post(todoController.addNewTodoList);
 
 router
-  .route("/todo/:listId")
-  .post(todoController.addNewTodo)
+  .route('/todo/:listId')
+  .post(todoController.addNewTodo);
 
-router.route("/todolist/:listId")
+router.route('/todolist/:listId')
   .get(todoController.getOneList)
-  .delete(todoController.deleteOneList)
+  .delete(todoController.deleteOneList);
 
 router
-  .route("/todolist/:listId/todo/:todoId")
+  .route('/todolist/:listId/todo/:todoId')
   .get(todoController.getOneListItem)
   .post(todoController.updateTodoItem)
-  .delete(todoController.deleteTodo)
+  .delete(todoController.deleteTodo);
 
-
-
-module.exports = router
+module.exports = router;

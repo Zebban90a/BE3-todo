@@ -1,8 +1,9 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
 
-const NewTodoItemSchema = new Schema({ body: String }, { timestamps: true })
+const { Schema } = mongoose;
 
-module.exports = mongoose.model("todoItem", NewTodoItemSchema)
+const NewTodoItemSchema = new Schema({ body: String }, { timestamps: true });
 
-//TODO Skala av datum så endast dag år månad visas
+module.exports = mongoose.model('todoItem', NewTodoItemSchema);
+
+// TODO Skala av datum så endast dag år månad visas

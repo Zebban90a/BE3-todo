@@ -1,10 +1,11 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
 
 const NewTodoListSchema = new Schema({
-  titel: { type: String, default: "guitarist" },
-  todos: [{ type: Schema.Types.ObjectId, ref: "todoItem" }],
-  user: { type: Schema.Types.ObjectId, ref: "userInfo" },
-})
+  titel: { type: String, default: 'guitarist' },
+  todos: [{ type: Schema.Types.ObjectId, ref: 'todoItem' }],
+  user: { type: Schema.Types.ObjectId, ref: 'userInfo' },
+});
 
-module.exports = mongoose.model("todoLists", NewTodoListSchema)
+module.exports = mongoose.model('todoLists', NewTodoListSchema);
