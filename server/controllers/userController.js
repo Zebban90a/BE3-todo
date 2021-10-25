@@ -12,19 +12,21 @@ exports.userLogin = (req, res, next) => {
     }
 
     if (!user) {
+      console.log("Fel lösen lr användare")
       return res.status(404).redirect("http://localhost:3000/login")
     } else {
-      console.log(user)
-      return res.redirect("http://localhost:3000/" + user._id )
+      console.log("Inloggad")
+      return res.redirect("http://localhost:3000/" + user._id)
     }
   })(req, res, next)
 }
 
-exports.registerUser =  (req, res) => {
+exports.registerUser = (req, res) => {
   userModel.register(
     userModel({
       username: req.body.username,
-    }), req.body.password,
+    }),
+    req.body.password,
     function (err, user) {
       //om error
       if (err) {

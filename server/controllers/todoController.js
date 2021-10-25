@@ -1,21 +1,19 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const connectEnsureLogin = require('connect-ensure-login');
-
+const connectEnsureLogin = require("connect-ensure-login")
 
 //////////////////////// GET REQUESTS ////////////////////////
 
+exports.getAllTodoLists = async (req, res) => {
+  const userId = req.params.userId
+  console.log(`getAllLists userId ${userId}`)
 
-exports.getAllTodoLists = async (req, res, ) => {
-  
-  //const userId = req.params.userId
-
-  const schema = await todoListModel.find()
+  const schema = await todoListModel.find({ user: userId })
   res.status(200).json(schema)
 }
 
-exports.getOneList =  async (req, res) => {
-
+exports.getOneList = async (req, res) => {
+  console.log("Inne")
   const listId = req.params.listId
   console.log(listId)
   const schema = await todoListModel.findById(listId).populate("todos")
@@ -28,7 +26,7 @@ exports.getOneList =  async (req, res) => {
   }
 }
 
-exports.getOneListItem =  async (req, res) => {
+exports.getOneListItem = async (req, res) => {
   const todoId = req.params.todoId
 
   const schema = await todoModel.findById(todoId)
@@ -64,19 +62,23 @@ exports.addNewTodo = (req, res) => {
 
 exports.addNewTodoList = async (req, res) => {
   const userId = req.params.userId
-  
-  
-  //const name = {titel: req.body.titel, user: user }
- 
-  const listName = await new todoListModel({titel: req.body.titel, user: userId} )
+  console.log(`addNewTodoList ${userId}`)
+  console.log(req.body)
+
+  //const name = { titel: req.body.titel, user: user }
+
+  const listName = await new todoListModel({
+    titel: req.body.titel,
+    user: userId,
+  })
   if (!listName) {
     res.statusCode = 404
     res.statusMessage = "Not found"
     res.end("Not found")
   } else {
-    console.log(listName)
-    res.status(200).json(listName)
-    console.log(userId) 
+    //console.log(listName)
+    res.status(200)
+    console.log(userId)
     listName.save()
   }
 }
@@ -108,7 +110,6 @@ exports.deleteTodo = (req, res) => {
 
 exports.deleteOneList = async (req, res) => {
   const listId = req.params.listId
-  console.log(listId)
+  console.log(`DELETE ITEM LISTID${listId}`)
   await todoListModel.findByIdAndDelete(listId)
 }
-

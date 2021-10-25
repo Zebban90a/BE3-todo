@@ -1,12 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const todoController = require("../controllers/todoController")
-const connectEnsureLogin = require('connect-ensure-login');
-
-
+const connectEnsureLogin = require("connect-ensure-login")
 
 /* GET home page. */
-
 
 /*function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()){
@@ -18,12 +15,14 @@ const connectEnsureLogin = require('connect-ensure-login');
   res.redirect("/login");
 } */
 
+router.route("/")
+//.get(todoController.getAllTodoLists)
+//.post(todoController.addNewTodoList)
 
 router
-  .route("/")
+  .route("/:userId")
   .get(todoController.getAllTodoLists)
   .post(todoController.addNewTodoList)
-
 
 router
   .route("/:listId")
@@ -31,7 +30,8 @@ router
   .post(todoController.addNewTodo)
   .delete(todoController.deleteOneList)
 
-router.route("/:todoId")
+router
+  .route("/:todoId")
   .delete(todoController.deleteTodo)
   .patch(todoController.updateTodoItem)
 

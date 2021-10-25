@@ -3,13 +3,15 @@ import axios from "axios"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
 
-export default function AllListPage({}) {
+export default function AllListPage() {
   const [allLists, setAllLists] = useState([])
   const { userId } = useParams()
+  console.log(userId)
 
   async function FetchAllLists() {
-    const { data } = await axios.get(`http://localhost:4000/api/todo`)
+    const { data } = await axios.get(`http://localhost:4000/api/todo/${userId}`)
     setAllLists(data)
+    console.log(`Alla listor ${data}`)
   }
 
   let deleteList = (id) => {
@@ -24,7 +26,7 @@ export default function AllListPage({}) {
   return (
     <>
       <div>
-      <CreateList userId={userId} />
+        <CreateList userId={userId} />
         <ul>
           {allLists.map((item, index) => (
             <li key={index}>

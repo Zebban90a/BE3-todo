@@ -2,19 +2,18 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
 
-
-export default function CreateList() {
+export default function CreateList({ userId }) {
   const [titel, setTitel] = useState("")
   const history = useHistory()
 
-  let submitHandler = async(e) => {
+  let submitHandler = async (e) => {
     e.preventDefault()
-    await axios.post(`http://localhost:4000/api/todo`, titel)
-    .then(function (response) {
-      const listId = response.data._id
-      history.push(`/${listId}`)
-    })
-
+    await axios
+      .post(`http://localhost:4000/api/todo/${userId}`, titel)
+      .then(function (response) {
+        const listId = response.data._id
+        history.push(`/${listId}`)
+      })
   }
 
   let changeHandler = (e) => {
