@@ -5,7 +5,7 @@ import CreateTodo from "../components/CreateTodo"
 import ReactMarkdown from "react-markdown"
 import styled from "styled-components"
 import Modal from "../components/Modal"
-
+import trashCan from "../img/trashcan.png"
 import { Header } from "../components/Header"
 
 const StyledCard = styled.div`
@@ -21,6 +21,15 @@ const StyledWrapper = styled.div`
   grid-template-columns: repeat(3, 1fr);
   column-gap: 5px;
   row-gap: 5px;
+`
+const StyledTrashcan = styled.image`
+  cursor: pointer;
+  margin-left: 0.1rem;
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 `
 //box-shadow: 13px 11px 34px 2px #000000;
 export default function ListPage() {
@@ -69,7 +78,9 @@ export default function ListPage() {
               >
                 <ReactMarkdown children={item.body} />
                 <p>{item.updatedAt}</p>
-                <button onClick={() => deleteTodo(item._id)}>DELETE</button>
+                <StyledTrashcan onClick={() => deleteTodo(item._id)}>
+                  <img src={trashCan} alt="" />
+                </StyledTrashcan>
               </StyledCard>
             ))}
         <Modal
