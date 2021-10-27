@@ -6,6 +6,8 @@ import ReactMarkdown from "react-markdown"
 import styled from "styled-components"
 import Modal from "../components/Modal"
 
+import { Header } from "../components/Header"
+
 const StyledCard = styled.div`
   border: 1px solid black;
   min-height: 200px;
@@ -53,6 +55,8 @@ export default function ListPage() {
 
   return (
     <>
+      <Header />
+
       <div>{!list ? "List not found" : list.titel}</div>
       <CreateTodo listId={listId} />
       <StyledWrapper>
