@@ -8,11 +8,6 @@ router
   .get(auth, todoController.getAllTodoLists)
   .post(auth, todoController.addNewTodoList)
 
-// router
-//   .route("/:userId")
-//   .get(todoController.getAllTodoLists)
-//   .post(todoController.addNewTodoList)
-
 router
   .route("/:listId")
   .get(auth, todoController.getOneList)

@@ -29,20 +29,6 @@ exports.getOneList = async (req, res) => {
   }
 }
 
-// exports.getOneListItem = async (req, res) => {
-//   const todoId = req.params.todoId
-
-//   const schema = await todoModel.findById(todoId)
-//   if (!schema) {
-//     res.statusCode = 404
-//     res.statusMessage = "Not found"
-//     res.end("Not found")
-//   } else {
-//     res.status(200).json(schema)
-//     console.log(schema)
-//   }
-// }
-
 //////////////////////// POST REQUESTS ////////////////////////
 exports.addNewTodo = (req, res) => {
   try {
@@ -77,8 +63,6 @@ exports.addNewTodoList = async (req, res) => {
   console.log(`addNewTodoList ${userId}`)
   console.log(req.body)
 
-  //const name = { titel: req.body.titel, user: user }
-
   const listName = await new todoListModel({
     titel: req.body.titel,
     user: userId,
@@ -88,7 +72,6 @@ exports.addNewTodoList = async (req, res) => {
     res.statusMessage = "Not found"
     res.end("Not found")
   } else {
-    //console.log(listName)
     res.status(200)
     console.log(userId)
     listName.save()

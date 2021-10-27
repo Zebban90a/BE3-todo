@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken")
-//const userModel = require("../models/user")
 
 const checkUser = (token) => {
   console.log("Check user function")
