@@ -3,6 +3,7 @@ import styled from "styled-components"
 import axios from "axios"
 
 const StyledButton = styled.button`
+cursor: pointer;
   border: none;
   float: right;
   margin-right: 1rem;
