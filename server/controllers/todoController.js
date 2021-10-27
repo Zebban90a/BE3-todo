@@ -29,39 +29,46 @@ exports.getOneList = async (req, res) => {
   }
 }
 
-exports.getOneListItem = async (req, res) => {
-  const todoId = req.params.todoId
+// exports.getOneListItem = async (req, res) => {
+//   const todoId = req.params.todoId
 
-  const schema = await todoModel.findById(todoId)
-  if (!schema) {
-    res.statusCode = 404
-    res.statusMessage = "Not found"
-    res.end("Not found")
-  } else {
-    res.status(200).json(schema)
-    console.log(schema)
-  }
-}
+//   const schema = await todoModel.findById(todoId)
+//   if (!schema) {
+//     res.statusCode = 404
+//     res.statusMessage = "Not found"
+//     res.end("Not found")
+//   } else {
+//     res.status(200).json(schema)
+//     console.log(schema)
+//   }
+// }
 
 //////////////////////// POST REQUESTS ////////////////////////
 exports.addNewTodo = (req, res) => {
-  const listId = req.params.listId
-  const todoObj = { body: req.body.text }
+  try {
+    const listId = req.params.listId
+    const todoObj = { body: req.body.text }
+    console.log("Inne i add todo")
+    console.log(todoObj)
 
-  const newTodo = new todoModel(todoObj)
-  newTodo.save()
+    const newTodo = new todoModel(todoObj)
+    newTodo.save()
+    console.log(newTodo)
 
-  todoListModel.findOneAndUpdate(
-    { _id: listId },
-    { $push: { todos: newTodo } },
-    { new: true },
-    (error, data) => {
-      if (error) {
-        console.log("error updating collection")
+    todoListModel.findOneAndUpdate(
+      { _id: listId },
+      { $push: { todos: newTodo } },
+      { new: true },
+      (error, data) => {
+        if (error) {
+          console.log("error updating collection")
+        }
       }
-    }
-  )
-  res.status(200)
+    )
+    res.status(200)
+  } catch (error) {
+    console.log("Todon sparades inte")
+  }
 }
 
 exports.addNewTodoList = async (req, res) => {
