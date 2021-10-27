@@ -9,13 +9,9 @@ export default function CreateList({ userId }) {
   axios.defaults.withCredentials = true
 
   let submitHandler = async (e) => {
-    e.preventDefault()
     await axios
       .post(`http://localhost:4000/api/todo/`, titel)
-      .then(function (response) {
-        const listId = response.data._id
-        history.push(`/${listId}`)
-      })
+      .then(function (response) {})
   }
 
   let changeHandler = (e) => {
