@@ -1,9 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import axios from "axios"
+import { useHistory, Link } from "react-router-dom"
 
 const StyledButton = styled.button`
-cursor: pointer;
+  cursor: pointer;
   border: none;
   float: right;
   margin-right: 1rem;
@@ -12,13 +13,23 @@ cursor: pointer;
 `
 
 export const Header = () => {
+  const history = useHistory()
+  axios.defaults.withCredentials = true
   const handleSignOut = async () => {
-    await axios.get("http://localhost:4000/users/logout")
+    await axios
+      .get("http://localhost:4000/users/logout")
+      .then(history.push("/login"))
   }
 
   return (
     <div>
       <StyledButton onClick={handleSignOut}>Sign out</StyledButton>
+      <Link to="/login">
+        <StyledButton>Sign in</StyledButton>
+      </Link>
+      <Link to="/register">
+        <StyledButton>Register</StyledButton>
+      </Link>
     </div>
   )
 }

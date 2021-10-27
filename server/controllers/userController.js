@@ -92,7 +92,7 @@ exports.registerUser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
       })
-      .send()
+      .redirect("http://localhost:3000/")
   } catch (error) {
     console.error("Register:", err)
     return res.status(500).send()
@@ -105,5 +105,5 @@ exports.userLogout = async (req, res) => {
       httpOnly: true,
       expires: new Date(0),
     })
-    .send()
+    .redirect("http://localhost:3000/login")
 }
