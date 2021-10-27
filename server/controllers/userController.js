@@ -41,7 +41,7 @@ exports.userLogin = async (req, res, next) => {
       .cookie("token", token, {
         httpOnly: true,
       })
-      .send(existingUser)
+      .redirect("http://localhost:3000/")
   } catch (err) {
     console.error(err)
     return res.status(500).send()
