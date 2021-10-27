@@ -9,6 +9,7 @@ const Modal = ({ show, close, title, data, id }) => {
     axios.patch(`http://localhost:4000/api/todo/single/${id}`, todo)
     console.log(`This is the text ${todo}`)
     close()
+    window.location.reload()
   }
 
   let changeHandler = (e) => {
@@ -44,7 +45,6 @@ const Modal = ({ show, close, title, data, id }) => {
           </div>
         </div>
       ) : null}
-      ,
     </>,
     document.getElementById("modal")
   )
