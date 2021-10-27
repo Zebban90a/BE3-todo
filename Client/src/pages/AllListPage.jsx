@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
+import { Header } from "../components/Header"
 
 export default function AllListPage() {
   const [allLists, setAllLists] = useState([])
@@ -25,6 +26,7 @@ export default function AllListPage() {
 
   return (
     <>
+      <Header />
       <div>
         <CreateList userId={userId} />
         <ul>

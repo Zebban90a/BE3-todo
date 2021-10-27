@@ -98,3 +98,12 @@ exports.registerUser = async (req, res) => {
     return res.status(500).send()
   }
 }
+
+exports.userLogout = async (req, res) => {
+  res
+    .cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    })
+    .send()
+}
