@@ -9,7 +9,7 @@ export default function AllListPage() {
   console.log(userId)
 
   async function FetchAllLists() {
-    const { data } = await axios.get(`http://localhost:4000/api/todo/${userId}`)
+    const { data } = await axios.get(`http://localhost:4000/api/todo/`)
     setAllLists(data)
     console.log(`Alla listor ${data}`)
   }

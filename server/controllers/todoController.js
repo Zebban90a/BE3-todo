@@ -1,19 +1,22 @@
 const todoListModel = require("../models/todoLists")
 const todoModel = require("../models/todoItem")
-const connectEnsureLogin = require("connect-ensure-login")
+const checkUser = require("../utils/checkUser")
 
 //////////////////////// GET REQUESTS ////////////////////////
 
 exports.getAllTodoLists = async (req, res) => {
-  const userId = req.params.userId
-  console.log(`getAllLists userId ${userId}`)
+  try {
+    const userId = checkUser(req.cookies.token)
 
-  const schema = await todoListModel.find({ user: userId })
-  res.status(200).json(schema)
+    const schema = await todoListModel.find({ user: userId })
+    res.status(200).json(schema)
+  } catch (error) {
+    console.log("error")
+  }
 }
 
 exports.getOneList = async (req, res) => {
-  console.log("Inne")
+  console.log("Inne i getOneList")
   const listId = req.params.listId
   console.log(listId)
   const schema = await todoListModel.findById(listId).populate("todos")
@@ -44,6 +47,7 @@ exports.getOneListItem = async (req, res) => {
 exports.addNewTodo = (req, res) => {
   const listId = req.params.listId
   const todoObj = { body: req.body.text }
+
   const newTodo = new todoModel(todoObj)
   newTodo.save()
 
@@ -61,7 +65,8 @@ exports.addNewTodo = (req, res) => {
 }
 
 exports.addNewTodoList = async (req, res) => {
-  const userId = req.params.userId
+  const userId = checkUser(req.cookies.token)
+  console.log(userId)
   console.log(`addNewTodoList ${userId}`)
   console.log(req.body)
 

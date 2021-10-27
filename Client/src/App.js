@@ -17,12 +17,11 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
+          <Route path="/:listId">
+            <ListPage />
+          </Route>
           <Route path="/todolist/:listId/todo/:todoId">
             <UpdateTodo />
-          </Route>
-          <Route path="/:userId">
-            {/* <ListPage /> */}
-            <AllListPage />
           </Route>
           <Route path="/">
             <AllListPage />

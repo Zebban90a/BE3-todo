@@ -6,10 +6,12 @@ export default function CreateList({ userId }) {
   const [titel, setTitel] = useState("")
   const history = useHistory()
 
+  axios.defaults.withCredentials = true
+
   let submitHandler = async (e) => {
     e.preventDefault()
     await axios
-      .post(`http://localhost:4000/api/todo/${userId}`, titel)
+      .post(`http://localhost:4000/api/todo/`, titel)
       .then(function (response) {
         const listId = response.data._id
         history.push(`/${listId}`)
