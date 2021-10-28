@@ -5,14 +5,15 @@ const checkUser = require("../utils/checkUser")
 //////////////////////// GET REQUESTS ////////////////////////
 
 exports.getAllTodoLists = async (req, res) => {
-  try {
-    const userId = checkUser(req.cookies.token)
+  // try {
+  //const userId = checkUser(req.cookies.token)
+  console.log(req.headers.user)
 
-    const schema = await todoListModel.find({ user: userId })
-    res.status(200).json(schema)
-  } catch (error) {
-    console.log("error")
-  }
+  //   const schema = await todoListModel.find({ user: userId })
+  //   res.status(200).json(schema)
+  // } catch (error) {
+  //   console.log("error")
+  // }
 }
 
 exports.getOneList = async (req, res) => {

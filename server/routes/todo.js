@@ -5,7 +5,7 @@ const auth = require("../middleware/auth")
 
 router
   .route("/")
-  .get(auth, todoController.getAllTodoLists)
+  .get(todoController.getAllTodoLists)
   .post(auth, todoController.addNewTodoList)
 
 router

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 
 exports.userLogin = async (req, res, next) => {
   try {
+    console.log(req.body)
     const { username, password } = req.body
 
     // Validations
@@ -37,11 +38,7 @@ exports.userLogin = async (req, res, next) => {
       process.env.JWT_SECRET_USER
     )
 
-    return res
-      .cookie("token", token, {
-        httpOnly: true,
-      })
-      .redirect("http://localhost:3000/")
+    return res.status(200).json({ token, data: { existingUser } })
   } catch (err) {
     console.error(err)
     return res.status(500).send()
