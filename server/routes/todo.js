@@ -5,18 +5,18 @@ const auth = require("../middleware/auth")
 
 router
   .route("/")
-  .get(todoController.getAllTodoLists)
+  .get(auth, todoController.getAllTodoLists)
   .post(auth, todoController.addNewTodoList)
 
 router
   .route("/:listId")
-  .get(auth, todoController.getOneList)
-  .post(auth, todoController.addNewTodo)
-  .delete(auth, todoController.deleteOneList)
+  .get(todoController.getOneList)
+  .post(todoController.addNewTodo)
+  .delete(todoController.deleteOneList)
 
 router
   .route("/single/:todoId")
-  .delete(auth, todoController.deleteTodo)
-  .patch(auth, todoController.updateTodoItem)
+  .delete(todoController.deleteTodo)
+  .patch(todoController.updateTodoItem)
 
 module.exports = router

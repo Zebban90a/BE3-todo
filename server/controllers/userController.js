@@ -1,6 +1,7 @@
 const userModel = require("../models/user")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const user = require("../models/user")
 
 exports.userLogin = async (req, res, next) => {
   try {
@@ -97,10 +98,5 @@ exports.registerUser = async (req, res) => {
 }
 
 exports.userLogout = async (req, res) => {
-  res
-    .cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-    })
-    .redirect("http://localhost:3000/login")
+  res.status(200)
 }

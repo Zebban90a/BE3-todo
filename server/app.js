@@ -27,3 +27,5 @@ app.use("/api/todo/", todoRouter)
 app.use("/users", usersRouter)
 
 module.exports = app
+
+//TODO Fixa register routen med token

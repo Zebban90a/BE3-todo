@@ -1,9 +1,10 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import axios from "axios"
 
 export const LoginForm = () => {
   const [loginValue, setLoginValue] = useState({})
+  const history = useHistory()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -17,6 +18,8 @@ export const LoginForm = () => {
     if (token) {
       localStorage.setItem("token", token)
     }
+
+    history.push("/")
   }
 
   const handleOnChange = (e) => {

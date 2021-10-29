@@ -9,9 +9,14 @@ export default function CreateList({ userId }) {
   axios.defaults.withCredentials = true
 
   let submitHandler = async (e) => {
-    await axios
-      .post(`http://localhost:4000/api/todo/`, titel)
-      .then(function (response) {})
+    const token = await window.localStorage.getItem("token")
+
+    if (!token) {
+      console.log("No token")
+    }
+    await axios.post(`http://localhost:4000/api/todo/`, titel, {
+      headers: { authToken: token },
+    })
   }
 
   let changeHandler = (e) => {

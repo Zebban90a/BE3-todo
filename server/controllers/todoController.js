@@ -5,19 +5,17 @@ const checkUser = require("../utils/checkUser")
 //////////////////////// GET REQUESTS ////////////////////////
 
 exports.getAllTodoLists = async (req, res) => {
-  // try {
-  //const userId = checkUser(req.cookies.token)
-  console.log(req.headers.user)
-
-  //   const schema = await todoListModel.find({ user: userId })
-  //   res.status(200).json(schema)
-  // } catch (error) {
-  //   console.log("error")
-  // }
+  try {
+    const userId = req.user
+    const schema = await todoListModel.find({ user: userId })
+    res.status(200).json(schema)
+  } catch (error) {
+    console.log("error")
+  }
 }
 
 exports.getOneList = async (req, res) => {
-  console.log("Inne i getOneList")
+  //console.log("Inne i getOneList")
   const listId = req.params.listId
   console.log(listId)
   const schema = await todoListModel.findById(listId).populate("todos")
@@ -32,7 +30,9 @@ exports.getOneList = async (req, res) => {
 
 //////////////////////// POST REQUESTS ////////////////////////
 exports.addNewTodo = (req, res) => {
+  //console.log("IDIDIDI")
   try {
+    //console.log(req.user + "ID")
     const listId = req.params.listId
     const todoObj = { body: req.body.text }
     console.log("Inne i add todo")
@@ -59,10 +59,7 @@ exports.addNewTodo = (req, res) => {
 }
 
 exports.addNewTodoList = async (req, res) => {
-  const userId = checkUser(req.cookies.token)
-  console.log(userId)
-  console.log(`addNewTodoList ${userId}`)
-  console.log(req.body)
+  const userId = req.user
 
   const listName = await new todoListModel({
     titel: req.body.titel,

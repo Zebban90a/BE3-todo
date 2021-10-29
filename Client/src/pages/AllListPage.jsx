@@ -38,7 +38,11 @@ export default function AllListPage() {
   console.log(userId)
 
   async function FetchAllLists() {
-    const { data } = await axios.get(`http://localhost:4000/api/todo/`)
+    const token = window.localStorage.getItem("token")
+
+    const { data } = await axios.get(`http://localhost:4000/api/todo/`, {
+      headers: { authToken: token },
+    })
     setAllLists(data)
     console.log(`Alla listor ${data}`)
   }

@@ -15,10 +15,10 @@ const StyledButton = styled.button`
 export const Header = () => {
   const history = useHistory()
   axios.defaults.withCredentials = true
+
   const handleSignOut = async () => {
-    await axios
-      .get("http://localhost:4000/users/logout")
-      .then(history.push("/login"))
+    localStorage.clear()
+    history.push("/login")
   }
 
   return (
