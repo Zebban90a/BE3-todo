@@ -16,10 +16,10 @@ export const LoginForm = () => {
     const token = await res.data.token
 
     if (token) {
-      localStorage.setItem("token", token)
+      await localStorage.setItem("token", token)
+      history.push("/")
+      window.location.reload()
     }
-
-    history.push("/")
   }
 
   const handleOnChange = (e) => {
@@ -30,7 +30,7 @@ export const LoginForm = () => {
     <>
       <form onSubmit={handleSubmit} onChange={handleOnChange}>
         <input placeholder="username" name="username"></input>
-        <input placeholder="password" name="password"></input>
+        <input placeholder="password" type="password" name="password"></input>
         <button type="submit">Logga in</button>
       </form>
       <h2>Skapa konto!</h2>
