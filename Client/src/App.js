@@ -20,9 +20,6 @@ function App() {
           <Route path="/:listId">
             <ListPage />
           </Route>
-          <Route path="/todolist/:listId/todo/:todoId">
-            <UpdateTodo />
-          </Route>
           <Route path="/">
             <AllListPage />
           </Route>
