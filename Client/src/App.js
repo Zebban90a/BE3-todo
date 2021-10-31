@@ -2,7 +2,6 @@ import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import AllListPage from "./pages/AllListPage"
 import ListPage from "./pages/ListPage"
-import UpdateTodo from "./pages/UpdateTodo"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 
