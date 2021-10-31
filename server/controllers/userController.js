@@ -1,7 +1,6 @@
 const userModel = require("../models/user")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const user = require("../models/user")
 
 exports.userLogin = async (req, res, next) => {
   try {
@@ -78,7 +77,7 @@ exports.registerUser = async (req, res) => {
 
    
     return res
-      .status(200).redirect("http://localhost:3000/")
+      .status(200).redirect("https://be3-client.herokuapp.com/")
   } catch (error) {
     console.error("Register:", error)
     return res.status(500).send()

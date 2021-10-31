@@ -13,7 +13,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:4000"],
+    origin: ['https://be3-client.herokuapp.com/'],
     credentials: true,
   })
 )
