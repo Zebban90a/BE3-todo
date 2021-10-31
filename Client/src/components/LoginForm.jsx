@@ -17,7 +17,7 @@ export const LoginForm = () => {
       localStorage.setItem("token", token)
     }
 
-    history.push("/")
+    history.push("/todolists")
   }
 
   const handleOnChange = (e) => {

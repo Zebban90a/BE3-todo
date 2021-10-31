@@ -18,7 +18,7 @@ export const Header = () => {
 
   const handleSignOut = async () => {
     localStorage.clear()
-    history.push("/login")
+    history.push("/")
   }
 
   return (

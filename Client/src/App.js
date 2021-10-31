@@ -11,10 +11,11 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route path="/login" exact component={Login} />
+          
           <Route path="/register" exact component={Register} />
-          <Route path="/:listId" exact component={ListPage} />
-          <Route path="/" exact component={AllListPage} />
+          <Route path="/todolists" exact component={AllListPage} />
+          <Route path="/todolists/:listId" exact component={ListPage} />
+          <Route path="/" exact component={Login} />
         </Switch>
       </Router>
     </>

@@ -3,8 +3,9 @@ import axios from "axios"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
 import { Header } from "../components/Header"
-import trashCan from "../img/trashcan.png"
+import TrashCan from "../img/trashcan.png"
 import styled from "styled-components"
+import {getAllLists} from "../fetches/fetches"
 
 const StyledTrashcan = styled.image`
   cursor: pointer;
@@ -40,9 +41,7 @@ export default function AllListPage() {
   async function FetchAllLists() {
     const token = window.localStorage.getItem("token")
 
-    const { data } = await axios.get(`http://localhost:4000/api/todo/`, {
-      headers: { authToken: token },
-    })
+    const {data} = await getAllLists(token)
     setAllLists(data)
     console.log(`Alla listor ${data}`)
   }
@@ -64,10 +63,10 @@ export default function AllListPage() {
         <StyledUl>
           {allLists.map((item, index) => (
             <StyledLI key={index}>
-              <Link to={`/${item._id}`}>{item.titel} </Link>
+              <Link to={`/todolists/${item._id}`}>{item.titel} </Link>
               {/* <button onClick={() => deleteList(item._id)}> */}
               <StyledTrashcan onClick={() => deleteList(item._id)}>
-                <img src={trashCan} alt="" />
+                <img src={TrashCan} alt="trashcan" />
               </StyledTrashcan>
               {/* </button> */}
             </StyledLI>

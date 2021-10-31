@@ -7,6 +7,7 @@ import styled from "styled-components"
 import Modal from "../components/Modal"
 import trashCan from "../img/trashcan.png"
 import { Header } from "../components/Header"
+import { getItems, deleteItems } from "../fetches/fetches"
 
 const StyledCard = styled.div`
   border: 1px solid black;
@@ -47,7 +48,7 @@ export default function ListPage() {
   const [modalText, setModalText] = useState("")
 
   async function FetchList() {
-    const { data } = await axios.get(`http://localhost:4000/api/todo/${listId}`)
+   const {data} = await getItems(listId)
     setTodoList(data)
   }
 
@@ -58,7 +59,7 @@ export default function ListPage() {
   //////////////////////// Delete function ////////////////////////
 
   let deleteTodo = (todoId) => {
-    axios.delete(`http://localhost:4000/api/todo/single/${todoId}`)
+    deleteItems(todoId)
     window.location.reload()
   }
 
