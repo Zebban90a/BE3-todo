@@ -59,7 +59,7 @@ exports.registerUser = async (req, res) => {
     const existingUser = await userModel.findOne({ username })
     if (existingUser) {
       return res.status(400).json({
-        errorMessage: "This email already exists",
+        errorMessage: "This user already exists",
       })
     }
 
@@ -74,25 +74,13 @@ exports.registerUser = async (req, res) => {
 
     // save user to db
 
-    const savedUser = await newUser.save()
+    await newUser.save()
 
-    // sign the token
-    const token = jwt.sign(
-      {
-        user: savedUser._id,
-      },
-      process.env.JWT_SECRET_USER
-    )
-
-    console.log(token)
-
+   
     return res
-      .cookie("token", token, {
-        httpOnly: true,
-      })
-      .redirect("http://localhost:3000/")
+      .status(200).redirect("http://localhost:3000/")
   } catch (error) {
-    console.error("Register:", err)
+    console.error("Register:", error)
     return res.status(500).send()
   }
 }
