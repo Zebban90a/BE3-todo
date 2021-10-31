@@ -1,11 +1,13 @@
 import axios from "axios"
 
-axios.defaults.withCredentials = true
-
+//axios.defaults.withCredentials = true
+const options = {
+    mode: 'cors'
+}
 
 const url = axios.create({
     
-    baseURL: "https://be3-todo.herokuapp.com/",
+    baseURL: "https://be3-todo.herokuapp.com",
 })
 
 
