@@ -16,7 +16,11 @@ const app = express()
     origin: 'https://be3-client.herokuapp.com'
   })
 )  */
-app.options('*', cors())
+
+var corsOptions = {
+  origin: 'https://be3-client.herokuapp.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 app.use(logger("dev"))
 app.use(express.json())
@@ -24,8 +28,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "public")))
 
-app.use("/api/todo/", todoRouter)
-app.use("/users", usersRouter)
+app.options('*', cors())
+app.use("/api/todo/", cors(corsOptions), todoRouter)
+app.options('*', cors())
+app.use("/users", cors(corsOptions), usersRouter)
 
 module.exports = app
 
