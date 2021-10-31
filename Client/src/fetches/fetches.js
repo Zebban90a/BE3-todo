@@ -15,3 +15,4 @@ export const createTodo = (listId, payload) => url.post(`/api/todo/${listId}`, p
 export const getAllLists = () => url.get("/")
 export const updateTodo = (id, payload) => url.patch(`/api/todo/single/${id}`, payload)
 
+//NOTE ändra fetch på rad 15 till /api/todo och bytt fetchen AllListPage
