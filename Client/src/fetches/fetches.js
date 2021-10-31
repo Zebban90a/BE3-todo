@@ -1,9 +1,7 @@
 import axios from "axios"
 
 //axios.defaults.withCredentials = true
-const options = {
-    mode: 'cors'
-}
+axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
 
 const url = axios.create({
     
