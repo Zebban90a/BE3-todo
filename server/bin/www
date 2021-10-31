@@ -7,7 +7,6 @@ const mongoose = require("mongoose")
 var app = require("../app")
 var debug = require("debug")("server:server")
 var http = require("http")
-const cors = require("cors")
 
 require("dotenv").config({ path: __dirname + "/../.env" })
 
@@ -41,11 +40,6 @@ Todolist
 
 var port = normalizePort("4000")
 app.set("port", port)
-
-app.use(
-  cors({
-    origin: 'https://be3-client.herokuapp.com'
-}))
 
 /**
  * Create HTTP server.

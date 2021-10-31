@@ -16,6 +16,7 @@ const app = express()
     origin: 'https://be3-client.herokuapp.com'
   })
 )  */
+app.options('*', cors())
 
 app.use(logger("dev"))
 app.use(express.json())
