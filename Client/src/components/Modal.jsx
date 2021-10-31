@@ -1,13 +1,14 @@
 import ReactDOM from "react-dom"
 import React, { useState } from "react"
-import axios from "axios"
 import "../scss/modal.scss"
+import {updateTodo} from "../fetches/fetches"
+
 
 const Modal = ({ show, close, title, data, id }) => {
   const [todo, setTodo] = useState()
-  let submitHandler = () => {
-    axios.patch(`http://localhost:4000/api/todo/single/${id}`, todo)
-    console.log(`This is the text ${todo}`)
+
+  let submitHandler = async () => {
+    updateTodo(id, todo)
     close()
     window.location.reload()
   }
@@ -15,6 +16,8 @@ const Modal = ({ show, close, title, data, id }) => {
   let changeHandler = (e) => {
     setTodo({ text: e.target.value })
   }
+
+
   return ReactDOM.createPortal(
     <>
       {show ? (

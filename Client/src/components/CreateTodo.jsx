@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react"
-import { useHistory } from "react-router-dom"
+//import { useHistory } from "react-router-dom"
 import axios from "axios"
 import styled from "styled-components"
+import {createTodo} from "../fetches/fetches"
 
 const StyledWrapper = styled.div`
   text-align: center;
@@ -12,15 +13,11 @@ export default function PostForm({ listId, todoBody }) {
   axios.defaults.withCredentials = true
   const [text, setText] = useState("")
   const textfield = useRef()
-  const history = useHistory()
+  //const history = useHistory()
 
-  //if(textfield.value  === '' ? console.log('tom sträng') : console.log('ej tom sträng'));
+
   let submitHandler = async (e) => {
-    //e.preventDefault()
-    await axios.post(`http://localhost:4000/api/todo/${listId}`, text)
-    console.log(`This is the text ${text}`)
-
-    // history.push(`http://localhost:3000//${listId}`)
+    await createTodo(listId,text)
   }
 
   let changeHandler = (e) => {

@@ -33,3 +33,6 @@ function App() {
 }
 
 export default App
+
+//NOTE behövs Todo.jsx i comonents mappen?
+//NOTE UpdateTodo i pages mappen behövs inte?

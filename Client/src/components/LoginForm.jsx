@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
-import axios from "axios"
+import { loginFetch } from "../fetches/fetches"
 
 export const LoginForm = () => {
   const [loginValue, setLoginValue] = useState({})
@@ -9,10 +9,8 @@ export const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await axios.post(
-      "http://localhost:4000/users/login",
-      loginValue
-    )
+    const res = await loginFetch(loginValue)
+
     const token = await res.data.token
 
     if (token) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import AllListPage from "../pages/AllListPage"
+//import AllListPage from "../pages/AllListPage"
+import {getallLists} from "../fetches/fetches"
 
 export default function GetAllLists() {
   const [allLists, setAllLists] = useState([])
@@ -9,11 +10,10 @@ export default function GetAllLists() {
   }, [])
 
   async function getData() {
-    const response = await fetch("http://localhost:4000/")
-    const data = await response.json()
+    const res = await getallLists()
+    const data = await res.json()
 
     setAllLists(data)
-    //console.log(allLists)
   }
 
   return (
@@ -23,4 +23,3 @@ export default function GetAllLists() {
   )
 }
 
-// {JSON.stringify(allLists)}

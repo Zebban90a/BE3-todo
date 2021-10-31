@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
+import {createList} from "../fetches/fetches"
 
 export default function CreateList({ userId }) {
   const [titel, setTitel] = useState("")
@@ -11,12 +12,9 @@ export default function CreateList({ userId }) {
   let submitHandler = async (e) => {
     const token = await window.localStorage.getItem("token")
 
-    if (!token) {
-      console.log("No token")
-    }
-    await axios.post(`http://localhost:4000/api/todo/`, titel, {
-      headers: { authToken: token },
-    })
+    if (!token) {console.log("No token")}
+
+    await createList(titel, {headers: { authToken: token }})
   }
 
   let changeHandler = (e) => {
