@@ -11,11 +11,11 @@ const usersRouter = require("./routes/users")
 
 const app = express()
 
- app.use(
+/*  app.use(
   cors({
     origin: 'https://be3-client.herokuapp.com'
   })
-) 
+)  */
 
 app.use(logger("dev"))
 app.use(express.json())
