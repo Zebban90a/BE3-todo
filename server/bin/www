@@ -12,6 +12,7 @@ require("dotenv").config({ path: __dirname + "/../.env" })
 
 //koppla upp mot databasen
 
+
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
@@ -39,6 +40,11 @@ Todolist
 
 var port = normalizePort("4000")
 app.set("port", port)
+
+app.use(
+  cors({
+    origin: 'https://be3-client.herokuapp.com'
+}))
 
 /**
  * Create HTTP server.

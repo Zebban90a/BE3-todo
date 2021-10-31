@@ -1,6 +1,6 @@
 import axios from "axios"
 
-axios.defaults.withCredentials = false;
+//axios.defaults.withCredentials = false;
 
 const url = axios.create({
     
