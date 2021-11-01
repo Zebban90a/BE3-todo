@@ -6,12 +6,13 @@ const logger = require("morgan")
 const cors = require("cors")
 require("dotenv").config()
 
-const todoRouter = require("./routes/todo")
-const usersRouter = require("./routes/users")
 
 const app = express()
 
 app.use(cors())
+
+const todoRouter = require("./routes/todo")
+const usersRouter = require("./routes/users")
 
 app.use(logger("dev"))
 app.use(express.json())
