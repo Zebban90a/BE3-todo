@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { useHistory } from "react-router-dom"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
 import { Header } from "../components/Header"
 import TrashCan from "../img/trashcan.png"
 import styled from "styled-components"
-import {getAllLists} from "../fetches/fetches"
+import {getAllLists, deleteList} from "../fetches/fetches"
 
 const StyledTrashcan = styled.image`
   cursor: pointer;
@@ -37,7 +36,6 @@ const StyledLI = styled.li`
 export default function AllListPage() {
   const [allLists, setAllLists] = useState([])
   const { userId } = useParams()
-const history = useHistory()
 
   async function FetchAllLists() {
     const token = window.localStorage.getItem("token")
@@ -48,9 +46,9 @@ const history = useHistory()
   }
 
   let deleteList = (id) => {
-    axios.delete(`http://localhost:4000/api/todo/${id}`)
-    history.push("/todolists")
-    //window.location.reload()
+   // axios.delete(`http://localhost:4000/api/todo/${id}`)
+    deleteList(id)
+    window.location.reload()
   }
 
   useEffect(() => {
