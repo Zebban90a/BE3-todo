@@ -9,7 +9,10 @@ require("dotenv").config()
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: ['https://be3-client.herokuapp.com'],
+    credentials: true,
+}))
 
 const todoRouter = require("./routes/todo")
 const usersRouter = require("./routes/users")
