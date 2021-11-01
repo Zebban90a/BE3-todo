@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import axios from "axios"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
 import { Header } from "../components/Header"
@@ -45,8 +44,7 @@ export default function AllListPage() {
     console.log(`Alla listor ${data}`)
   }
 
-  let deleteList = (id) => {
-   // axios.delete(`http://localhost:4000/api/todo/${id}`)
+  let deleteTodoList = (id) => {
     deleteList(id)
     window.location.reload()
   }
@@ -64,7 +62,7 @@ export default function AllListPage() {
           {allLists.map((item, index) => (
             <StyledLI key={index}>
               <Link to={`/todolists/${item._id}`}>{item.titel} </Link>
-              <StyledTrashcan onClick={() => deleteList(item._id)}>
+              <StyledTrashcan onClick={() => deleteTodoList(item._id)}>
                 <img src={TrashCan} alt="trashcan" />
               </StyledTrashcan>
             </StyledLI>
