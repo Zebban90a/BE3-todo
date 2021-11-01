@@ -46,7 +46,7 @@ export default function AllListPage() {
 
   let deleteTodoList = (id) => {
     deleteList(id)
-    window.location.reload()
+   // window.location.reload()
   }
 
   useEffect(() => {
