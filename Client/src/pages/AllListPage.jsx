@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { useHistory } from "react-router-dom"
 import { Link, useParams } from "react-router-dom"
 import CreateList from "../components/CreateList"
 import { Header } from "../components/Header"
@@ -36,7 +37,7 @@ const StyledLI = styled.li`
 export default function AllListPage() {
   const [allLists, setAllLists] = useState([])
   const { userId } = useParams()
-  console.log(userId)
+const history = useHistory()
 
   async function FetchAllLists() {
     const token = window.localStorage.getItem("token")
@@ -48,7 +49,8 @@ export default function AllListPage() {
 
   let deleteList = (id) => {
     axios.delete(`http://localhost:4000/api/todo/${id}`)
-    window.location.reload()
+    history.push("/todolists")
+    //window.location.reload()
   }
 
   useEffect(() => {
@@ -64,11 +66,9 @@ export default function AllListPage() {
           {allLists.map((item, index) => (
             <StyledLI key={index}>
               <Link to={`/todolists/${item._id}`}>{item.titel} </Link>
-              {/* <button onClick={() => deleteList(item._id)}> */}
               <StyledTrashcan onClick={() => deleteList(item._id)}>
                 <img src={TrashCan} alt="trashcan" />
               </StyledTrashcan>
-              {/* </button> */}
             </StyledLI>
           ))}
         </StyledUl>
