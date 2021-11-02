@@ -85,7 +85,6 @@ export const LoginForm = () => {
     <>
     <StyledWrapper>
       <StyledLoginContainer>
-
         <StyledLoginInText>Logga in!</StyledLoginInText>
         <form onSubmit={handleSubmit} onChange={handleOnChange}>
           <StyledInput placeholder="username" name="username"></StyledInput>
