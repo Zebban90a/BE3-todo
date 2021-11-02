@@ -12,7 +12,7 @@ const userInfo = {
 describe("Post user/login", () => {
     test("Test validation if the user does not put in both a username anad a password", async () => {
         const response = await request(app).post("/users/login").send(userInfo);
-        expect(response.statusCode).toBe(401);
+        expect(response.statusCode).toBe(400);
     })
 
 

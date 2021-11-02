@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken")
 
 exports.userLogin = async (req, res, next) => {
   try {
-    console.log(req.body)
     const { username, password } = req.body
 
     // Validations
@@ -28,8 +27,6 @@ exports.userLogin = async (req, res, next) => {
     if (!passwordCorrect) {
       return res.status(401).json({ errorMessage: "Wrong email or password." })
     }
-
-    // send the token in a HTTP only cookie
 
     const token = jwt.sign(
       {
@@ -75,7 +72,7 @@ exports.registerUser = async (req, res) => {
 
     await newUser.save()
 
-   
+
     return res
       .status(200).redirect("https://be3-client.herokuapp.com/")
   } catch (error) {
@@ -85,5 +82,5 @@ exports.registerUser = async (req, res) => {
 }
 
 exports.userLogout = async (req, res) => {
-  res.status(200)
+  res.status(200).send()
 }
