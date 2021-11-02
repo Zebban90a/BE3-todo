@@ -93,7 +93,6 @@ exports.updateTodoItem = async (req, res) => {
 
 exports.deleteTodo = (req, res) => {
   const todoId = req.params.todoId
-  console.log(todoId)
 
   todoModel.findByIdAndDelete(todoId, (err) => {
     if (err) console.log(err)
@@ -103,6 +102,5 @@ exports.deleteTodo = (req, res) => {
 
 exports.deleteOneList = async (req, res) => {
   const listId = req.params.listId
-  console.log(`DELETE ITEM LISTID${listId}`)
   await todoListModel.findByIdAndDelete(listId)
 }
