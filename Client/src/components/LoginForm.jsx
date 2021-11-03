@@ -85,16 +85,16 @@ export const LoginForm = () => {
     <>
     <StyledWrapper>
       <StyledLoginContainer>
-        <StyledLoginInText>Logga in!</StyledLoginInText>
+        {/* <StyledLoginInText ></StyledLoginInText> */}
         <form onSubmit={handleSubmit} onChange={handleOnChange}>
           <StyledInput placeholder="username" name="username"></StyledInput>
           <StyledInput placeholder="password" type="password" name="password"></StyledInput>
-          <StyledButton type="submit">Logga in</StyledButton>
+          <StyledButton button role="button" type="submit">Logga in</StyledButton>
         </form>
         <StyledRegistreraText>Eller skapa ett konto här</StyledRegistreraText>
-        <Link to="/register">
+        <a href="/register">
           <StyledButton>Skapa konto</StyledButton>
-        </Link>
+        </a>
       </StyledLoginContainer>
     </StyledWrapper>
     </>
