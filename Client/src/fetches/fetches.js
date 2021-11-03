@@ -1,10 +1,8 @@
 import axios from "axios"
 
-//axios.defaults.withCredentials = false;
-
 const url = axios.create({
 
-    baseURL: "http://localhost:4000/",
+    baseURL: "https://be3-todo.herokuapp.com/",
 })
 
 
