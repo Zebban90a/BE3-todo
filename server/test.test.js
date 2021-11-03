@@ -2,7 +2,6 @@ const request = require('supertest');
 require("dotenv").config()
 
 const app = require("./app");
-const router = require("./routes/users")
 
 const userInfo = {
     username: process.env.USERNAME,
@@ -23,17 +22,3 @@ describe("Post user/login", () => {
 })
 
 
-
-//////////////////////// MOCHA ////////////////////////
-
-// describe('Todo REST API routes', () => {
-//     describe('Sending a POST request with correct username and password to /users/login', () => {
-//         it('should respond with 200 and return json.', (done) => {
-//             request(app)
-//                 .post('/users/login')
-//                 .send(username = "Anna", password = "123")
-//                 // .expect('Content-Type', /json/)
-//                 .expect(200, done);
-//         });
-//     })
-// })
