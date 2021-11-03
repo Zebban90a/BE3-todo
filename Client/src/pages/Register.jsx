@@ -51,7 +51,7 @@ export default function Register() {
              <div>
                 <form action="http://localhost:4000/users/register" method="POST">
                      <StyledInput placeholder='username' name='username'></StyledInput>
-                    <StyledInput placeholder='password' name='password'></StyledInput>
+                    <StyledInput placeholder='password' type="password" name='password'></StyledInput>
                     <StyledButton type="submit">Skapa</StyledButton>
                 </form>
             </div>
