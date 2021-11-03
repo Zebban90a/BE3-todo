@@ -28,5 +28,3 @@ app.use("/users", usersRouter)
 
 module.exports = app
 
-
-//NOTE kolla så registering fungerar med nya local storgae token. Tror inte jag ändrat på den en
