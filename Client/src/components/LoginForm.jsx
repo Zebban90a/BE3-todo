@@ -88,7 +88,7 @@ export const LoginForm = () => {
         <StyledLoginInText>Logga in!</StyledLoginInText>
         <form onSubmit={handleSubmit} onChange={handleOnChange}>
           <StyledInput placeholder="username" name="username"></StyledInput>
-          <StyledInput placeholder="password" name="password"></StyledInput>
+          <StyledInput placeholder="password" type="password" name="password"></StyledInput>
           <StyledButton type="submit">Logga in</StyledButton>
         </form>
         <StyledRegistreraText>Eller skapa ett konto här</StyledRegistreraText>
