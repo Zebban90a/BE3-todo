@@ -3,8 +3,8 @@ import axios from "axios"
 //axios.defaults.withCredentials = false;
 
 const url = axios.create({
-    
-    baseURL: "https://be3-todo.herokuapp.com",
+
+    baseURL: "http://localhost:4000/",
 })
 
 
@@ -12,7 +12,7 @@ const url = axios.create({
 export const loginFetch = (payload) => url.post("/users/login", payload)
 export const createList = (payload, headers) => url.post("/api/todo", payload, headers)
 export const createTodo = (listId, payload) => url.post(`/api/todo/${listId}`, payload)
-export const getAllLists = (token) => url.get("/api/todo", {headers: { authToken: token }})
+export const getAllLists = (token) => url.get("/api/todo", { headers: { authToken: token } })
 export const deleteList = (id) => url.delete(`/api/todo/${id}`)
 export const deleteItems = (todoId) => url.delete(`/api/todo/single/${todoId}`)
 export const updateTodo = (id, payload) => url.patch(`/api/todo/single/${id}`, payload)

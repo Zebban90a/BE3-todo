@@ -10,7 +10,7 @@ require("dotenv").config()
 const app = express()
 
 app.use(cors({
-    origin: ['https://be3-client.herokuapp.com'],
+    origin: ['http://localhost:3000'],
     credentials: true,
 }))
 

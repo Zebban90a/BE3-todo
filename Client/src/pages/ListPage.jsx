@@ -14,7 +14,7 @@ const StyledCard = styled.div`
   min-height: 200px;
   border-radius: 15px;
   text-align: center;
-  background-color: #e9c39d;
+  background-color: #e9e5e2;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.58);
 `
 const StyledWrapper = styled.div`

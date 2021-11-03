@@ -4,12 +4,16 @@ import axios from "axios"
 import { useHistory, Link } from "react-router-dom"
 
 const StyledButton = styled.button`
-  cursor: pointer;
-  border: none;
-  float: right;
-  margin-right: 1rem;
-  padding: 1rem;
-  border-radius: 15px;
+border: none;
+padding:3px 20px;
+border-radius: 5px;
+background-color: inherit;
+border: solid 2px #9aea9e;
+color: white;
+font-size: 1.1rem;
+cursor: pointer;
+margin-left: 10px;
+float: right;
 `
 
 export const Header = () => {

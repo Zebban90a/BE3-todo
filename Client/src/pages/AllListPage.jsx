@@ -22,6 +22,8 @@ const StyledUl = styled.ul`
 
 const StyledLI = styled.li`
   margin-top: 0.5rem;
+  margin-left: 10rem;
+  color: white;
   cursor: pointer;
   align-items: center;
   text-decoration: none;
@@ -31,6 +33,7 @@ const StyledLI = styled.li`
     color: inherit;
   }
 `
+
 
 export default function AllListPage() {
   const [allLists, setAllLists] = useState([])
