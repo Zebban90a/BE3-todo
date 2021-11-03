@@ -68,8 +68,6 @@ exports.registerUser = async (req, res) => {
       password: passwordHash,
     })
 
-    // save user to db
-
     await newUser.save()
 
 

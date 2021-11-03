@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken")
 
 function auth(req, res, next) {
   try {
-    console.log("AUTH")
     const token = req.headers.authtoken
     if (!token) return res.status(401).json({ errorMessage: "Unauthorized" })
 
@@ -12,7 +11,7 @@ function auth(req, res, next) {
 
     return next()
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return res.status(401).json({ errorMessage: "Unauthorized" })
   }
 }
