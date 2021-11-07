@@ -80,5 +80,3 @@ export default function CreateList({ userId }) {
     </>
   )
 }
-
-//TODO fetcha nya listan till servern

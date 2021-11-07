@@ -96,4 +96,3 @@ export default function ListPage() {
   )
 }
 
-//TODO när fetchningen fungerar igen så fixa post req i CreateTodo.js

@@ -4,7 +4,6 @@ import AllListPage from "./pages/AllListPage"
 import ListPage from "./pages/ListPage"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
@@ -29,7 +28,6 @@ function App() {
       <GlobalStyle />
       <Router>
         <Switch>
-
           <Route path="/register" exact component={Register} />
           <Route path="/todolists" exact component={AllListPage} />
           <Route path="/todolists/:listId" exact component={ListPage} />
