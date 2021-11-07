@@ -49,7 +49,7 @@ export default function Register() {
         <StyledWrapper>
             <StyledRegisterContainer>
              <div>
-                <form action="http://localhost:4000/users/register" method="POST">
+                <form action="https://be3-todo.herokuapp.com//users/register" method="POST">
                      <StyledInput placeholder='username' name='username'></StyledInput>
                     <StyledInput placeholder='password' type="password" name='password'></StyledInput>
                     <StyledButton type="submit">Skapa</StyledButton>
